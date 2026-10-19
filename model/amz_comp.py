@@ -21,6 +21,8 @@ def fetch(kw):
     path = os.path.join(CACHE, hashlib.md5(kw.lower().encode()).hexdigest() + ".html")
     if os.path.exists(path) and os.path.getsize(path) > 30000:
         return open(path, encoding="utf-8", errors="ignore").read()
+    if os.environ.get("AMZ_OFFLINE"):
+        return None
     url = "https://www.amazon.sa/s?k=" + urllib.parse.quote_plus(kw) + "&language=en_AE"
     for i in range(4):
         try:
