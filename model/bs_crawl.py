@@ -6,6 +6,8 @@ import json, os, re, sys, time, random, hashlib, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
 SITE = sys.argv[1]
+LIST = os.environ.get("BS_LIST", "bestsellers")   # bestsellers | new-releases
+NAVREF = {"bestsellers": "zg_bs_nav_", "new-releases": "zg_bsnr_nav_"}[LIST]
 HOST = {"com": "https://www.amazon.com", "sa": "https://www.amazon.sa"}[SITE]
 CACHE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "bs_cache")
 os.makedirs(CACHE, exist_ok=True)
@@ -58,7 +60,7 @@ def items(h, node, path):
 
 def children(h):
     out = []
-    for u, name in re.findall(r'href="(/[^"]*?/(?:zgbs|gp/bestsellers)/[^"]+?)/ref=zg_bs_nav_[^"]*"[^>]*>([^<]{2,80})<', h):
+    for u, name in re.findall(r'href="(/(?:[^"]*?/)?(?:zgbs|gp/bestsellers|gp/new-releases)/[^"]+?)/ref=' + NAVREF + r'[^"]*"[^>]*>([^<]{2,80})<', h):
         name = name.replace("&amp;", "&").strip()
         if not SKIP.search(name):
             out.append((u, name))
@@ -68,7 +70,7 @@ def children(h):
 def crawl(max_nodes):
     seen, queue, data = set(), [], {}
     for r in ROOTS:
-        queue.append((("/-/en" if SITE == "sa" else "") + "/gp/bestsellers/" + r + ("?language=en_AE" if SITE == "sa" else ""), r, 0))
+        queue.append((("/-/en" if SITE == "sa" else "") + "/gp/" + LIST + "/" + r + ("?language=en_AE" if SITE == "sa" else ""), r, 0))
     done = 0
     with ThreadPoolExecutor(3) as ex:
         while queue and done < max_nodes:
