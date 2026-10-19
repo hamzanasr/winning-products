@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Opportunities</title>
+<meta name="description" content="1500 فرصة منتج للسوق السعودي على نون وأمازون مع سعر الشراء والبيع والمنافسة وميزانية التجربة.">
+<style>
+:root {
+  --bg: #f4f6f9; --panel: #ffffff; --fg: #141b2a; --muted: #5a6577; --line: #e0e5ed; --soft: #eef2f7;
+  --accent: #0a5fd0; --accent-fg: #ffffff; --accent-soft: #e6f0ff;
+  --good: #0c7a47; --good-soft: #e3f5ec; --warn: #9a5b00; --warn-soft: #fff1d9; --bad: #b3261e; --bad-soft: #fde8e6; --info: #1f5fa8;
+  --shadow: 0 1px 2px rgba(15,25,45,.06), 0 4px 14px rgba(15,25,45,.06);
+  --r: 14px; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1218; --panel: #171d26; --fg: #e9edf4; --muted: #9aa6b8; --line: #2a3340; --soft: #212a36;
+    --accent: #6cb2ff; --accent-fg: #07203d; --accent-soft: #152a45;
+    --good: #4cc790; --good-soft: #12301f; --warn: #f0b24a; --warn-soft: #34270d; --bad: #ff8b82; --bad-soft: #3a1815; --info: #7fb6ee;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1218; --panel: #171d26; --fg: #e9edf4; --muted: #9aa6b8; --line: #2a3340; --soft: #212a36;
+  --accent: #6cb2ff; --accent-fg: #07203d; --accent-soft: #152a45;
+  --good: #4cc790; --good-soft: #12301f; --warn: #f0b24a; --warn-soft: #34270d; --bad: #ff8b82; --bad-soft: #3a1815; --info: #7fb6ee;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.6 "Segoe UI", Tahoma, "Noto Sans Arabic", system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+button, select, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, p { margin: 0; }
+a { color: var(--accent); }
+.num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+.wrap { max-width: 1360px; margin-inline: auto; padding-inline: 16px; }
+
+/* header */
+.top { padding-block: 22px 8px; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; }
+.brand h1 { font-size: 26px; letter-spacing: .2px; line-height: 1.2; }
+.brand p { color: var(--muted); margin-top: 4px; max-width: 62ch; }
+.top-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 7px 14px; display: inline-flex; gap: 6px; align-items: center; transition: background .15s, border-color .15s; }
+.btn:hover { background: var(--soft); }
+a.btn { text-decoration: none; color: inherit; }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn.sm { padding: 4px 10px; font-size: 12.5px; border-radius: 8px; }
+.notice { margin-top: 8px; background: var(--warn-soft); color: var(--fg); border: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); border-radius: 12px; padding: 10px 14px; font-size: 13px; display: flex; gap: 10px; align-items: start; }
+.notice span { cursor: pointer; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.notice.open span { -webkit-line-clamp: unset; }
+.notice button { margin-inline-start: auto; background: none; border: 0; color: var(--muted); font-size: 18px; line-height: 1; padding: 0 4px; }
+
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 14px; }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 16px; text-align: start; box-shadow: var(--shadow); display: grid; gap: 2px; }
+button.kpi:hover { border-color: var(--accent); }
+.kpi .l { color: var(--muted); font-size: 12.5px; }
+.kpi .v { font-size: 28px; font-weight: 650; line-height: 1.2; }
+.kpi .s { color: var(--muted); font-size: 12px; }
+.kpi .v.small { font-size: 16px; line-height: 1.4; }
+
+/* toolbar */
+.toolbar { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); padding-block: 12px 8px; margin-top: 10px; border-bottom: 1px solid var(--line); }
+.filters2 { padding-top: 4px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.search { flex: 1 1 260px; position: relative; }
+.search input { width: 100%; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 9px 14px 9px 36px; }
+.search svg { position: absolute; inset-inline-end: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--muted); pointer-events: none; }
+.search input { padding-inline: 14px 38px; }
+select { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; max-width: 100%; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.seg button { background: none; border: 0; padding: 8px 12px; border-inline-start: 1px solid var(--line); }
+.seg button:first-child { border-inline-start: 0; }
+.seg button[aria-pressed=true] { background: var(--accent); color: var(--accent-fg); }
+.chips { display: flex; gap: 8px; overflow-x: auto; padding-block: 8px 4px; scrollbar-width: thin; }
+.chip { flex: none; border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 5px 13px; font-size: 13px; white-space: nowrap; }
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed=true] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.sliders { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 6px; align-items: center; font-size: 13px; }
+.sliders label { display: flex; gap: 8px; align-items: center; color: var(--muted); }
+.sliders input[type=range] { width: 150px; accent-color: var(--accent); }
+.sliders b { color: var(--fg); min-width: 44px; display: inline-block; }
+.resultline { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding-block: 12px 4px; color: var(--muted); }
+.resultline .grow { flex: 1; }
+
+/* panels (details) */
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); margin-top: 14px; box-shadow: var(--shadow); }
+.panel > summary { list-style: none; cursor: pointer; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-weight: 600; }
+.panel > summary::-webkit-details-marker { display: none; }
+.panel > summary::after { content: "▾"; margin-inline-start: auto; color: var(--muted); transition: transform .2s; }
+.panel[open] > summary::after { transform: rotate(180deg); }
+.panel .inner { padding: 4px 16px 16px; }
+.assume { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px 18px; }
+.assume fieldset { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 0; display: grid; gap: 8px; }
+.assume legend { padding-inline: 6px; color: var(--muted); font-size: 12.5px; }
+.assume label { display: flex; justify-content: space-between; gap: 10px; align-items: center; font-size: 13px; }
+.assume input { width: 86px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 4px 8px; direction: ltr; text-align: right; }
+.charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 14px; }
+.charts h3 { font-size: 14px; margin-bottom: 4px; }
+.charts .hint { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+svg { display: block; width: 100%; height: auto; }
+.catrow { display: grid; grid-template-columns: minmax(110px, 38%) 1fr auto; gap: 8px; align-items: center; padding: 5px 6px; border-radius: 8px; width: 100%; background: none; border: 0; text-align: start; }
+.catrow:hover { background: var(--soft); }
+.catrow[aria-pressed=true] { background: var(--accent-soft); }
+.catrow .bar { height: 10px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.catrow .bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.catrow .bar i.neg { background: var(--bad); }
+.catrow .n { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.tip { position: fixed; pointer-events: none; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px; font-size: 12px; box-shadow: var(--shadow); max-width: 260px; z-index: 60; }
+
+/* cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(236px, 1fr)); gap: 14px; margin-top: 12px; }
+.pc { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; cursor: pointer; box-shadow: var(--shadow); transition: transform .15s, border-color .15s; text-align: start; padding: 0; position: relative; }
+.pc:hover { transform: translateY(-2px); border-color: var(--accent); }
+.media { aspect-ratio: 4 / 3; background: var(--soft); position: relative; display: grid; place-items: center; overflow: hidden; }
+.media img, .dhero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #fff; }
+.media .ph { font-size: 54px; filter: saturate(1.1); }
+.media .badge { position: absolute; inset-block-start: 8px; inset-inline-start: 8px; }
+.fav { position: absolute; inset-block-start: 6px; inset-inline-end: 6px; background: color-mix(in srgb, var(--panel) 88%, transparent); border: 1px solid var(--line); width: 32px; height: 32px; border-radius: 50%; font-size: 16px; line-height: 1; display: grid; place-items: center; padding: 0; }
+.fav[aria-pressed=true] { color: #e0a100; border-color: #e0a100; }
+.pbody { padding: 10px 12px 12px; display: grid; gap: 6px; flex: 1; align-content: start; }
+.pbody .cat { font-size: 12px; color: var(--muted); }
+.pbody h3 { font-size: 14.5px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.9em; }
+.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; text-align: start; margin-top: 2px; }
+.nums div { display: grid; line-height: 1.25; }
+.nums small { color: var(--muted); font-size: 11.5px; }
+.nums b { font-size: 15px; }
+.nums .m b { font-size: 19px; }
+.mbar { height: 5px; border-radius: 99px; background: var(--soft); overflow: hidden; }
+.mbar i { display: block; height: 100%; border-radius: 99px; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.tag { font-size: 11.5px; padding: 1px 8px; border-radius: 99px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.tag.g { background: var(--good-soft); color: var(--good); } .tag.w { background: var(--warn-soft); color: var(--warn); } .tag.b { background: var(--bad-soft); color: var(--bad); } .tag.i { background: var(--accent-soft); color: var(--accent); }
+.rate { font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: var(--panel); border: 1px solid currentColor; }
+.rate.r-start { color: var(--good); } .rate.r-cert { color: var(--info); } .rate.r-ok { color: var(--warn); } .rate.r-weak { color: var(--bad); }
+.c-good { color: var(--good); } .c-ok { color: var(--warn); } .c-bad { color: var(--bad); }
+.bg-good { background: var(--good); } .bg-ok { background: var(--warn); } .bg-bad { background: var(--bad); }
+.more { display: flex; justify-content: center; padding: 18px; }
+.empty { text-align: center; padding: 46px 12px; color: var(--muted); }
+.empty b { display: block; font-size: 16px; color: var(--fg); margin-bottom: 6px; }
+
+/* table */
+.tblwrap { overflow: auto; border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); margin-top: 12px; max-height: 78vh; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { position: sticky; top: 0; background: var(--panel); z-index: 2; border-bottom: 1px solid var(--line); padding: 0; text-align: start; white-space: nowrap; }
+th button { background: none; border: 0; padding: 10px 10px; width: 100%; text-align: start; color: var(--muted); font-weight: 600; }
+th[aria-sort] button { color: var(--fg); }
+th[aria-sort=ascending] button::after { content: " ▲"; font-size: 10px; } th[aria-sort=descending] button::after { content: " ▼"; font-size: 10px; }
+td { padding: 6px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tbody tr { cursor: pointer; } tbody tr:hover { background: var(--soft); }
+td.n { white-space: nowrap; direction: ltr; text-align: start; font-variant-numeric: tabular-nums; }
+.thumb { width: 44px; height: 44px; border-radius: 8px; background: var(--soft); display: grid; place-items: center; overflow: hidden; font-size: 22px; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; background: #fff; }
+td .pn { font-weight: 600; } td .pe { font-size: 12px; color: var(--muted); direction: ltr; text-align: start; }
+
+/* drawer */
+.scrim { position: fixed; inset: 0; background: rgba(8,12,20,.5); z-index: 40; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; top: 0; bottom: 0; left: 0; width: min(500px, 100%); background: var(--panel); z-index: 50; transform: translateX(-105%); visibility: hidden; transition: transform .25s ease, visibility 0s .25s; display: flex; flex-direction: column; box-shadow: 0 0 40px rgba(0,0,0,.3); }
+.drawer.on { transform: none; visibility: visible; transition: transform .25s ease; }
+.dhead { display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.dhead .grow { flex: 1; font-size: 12.5px; color: var(--muted); }
+.dbody { overflow: auto; padding: 14px 16px 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+.dbody > * { flex: none; }
+.dhero { aspect-ratio: 16 / 10; background: var(--soft); border-radius: 12px; display: grid; place-items: center; overflow: hidden; position: relative; }
+
+.dhero .ph { font-size: 80px; }
+.dhero small { position: absolute; inset-block-end: 6px; inset-inline-start: 8px; background: rgba(0,0,0,.55); color: #fff; padding: 1px 8px; border-radius: 99px; font-size: 11px; }
+.dtitle h2 { font-size: 19px; line-height: 1.4; }
+.dtitle .en { direction: ltr; text-align: start; color: var(--muted); font-size: 12.5px; }
+.bigm { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.bigm .v { font-size: 38px; font-weight: 700; line-height: 1; }
+.stack { display: flex; height: 22px; border-radius: 8px; overflow: hidden; background: var(--soft); }
+.stack i { display: block; height: 100%; min-width: 2px; }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; font-size: 12.5px; margin-top: 8px; }
+.legend span { display: flex; gap: 6px; align-items: center; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+.legend b { margin-inline-start: auto; font-weight: 600; }
+.box { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.box h3 { font-size: 13.5px; }
+dl.kv { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; margin: 0; font-size: 13px; }
+dl.kv dt, dl.kv dd { margin: 0; padding: 4px 0; border-bottom: 1px dashed var(--line); }
+dl.kv dd { direction: ltr; text-align: start; font-variant-numeric: tabular-nums; }
+dl.kv .t { font-weight: 700; border-bottom: 1px solid var(--line); }
+.ov { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ov label { display: grid; gap: 3px; font-size: 12px; color: var(--muted); }
+.ov input { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; direction: ltr; text-align: right; }
+.meter { height: 8px; border-radius: 99px; background: var(--soft); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links a { text-decoration: none; border: 1px solid var(--line); border-radius: 10px; padding: 6px 12px; font-size: 13px; background: var(--panel); }
+.links a:hover { border-color: var(--accent); }
+.credit { font-size: 11.5px; color: var(--muted); }
+footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
+@media (max-width: 700px) {
+  .brand h1 { font-size: 22px; }
+  .kpi { padding: 10px 12px; } .kpi .v { font-size: 22px; }
+  .row > select { flex: 1 1 calc(50% - 8px); } .seg { display: none; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .media .ph { font-size: 40px; } .pbody h3 { font-size: 13.5px; }
+  .nums b { font-size: 14px; } .nums .m b { font-size: 17px; }
+  .drawer { top: auto; right: 0; width: 100%; max-height: 92vh; border-radius: 18px 18px 0 0; transform: translateY(105%); }
+  .drawer.on { transform: none; }
+  .sliders input[type=range] { width: 110px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <h1>1500 فرصة منتج</h1>
+      <p>منتجات للبيع في السوق السعودي على نون وأمازون: سعر بيع بين 50 و200 ريال، وأربعة أضعاف سعر الشراء على الأقل، ومعها المنافسة من 10 وميزانية تجربة 100 قطعة والمبيعات اليومية المتوقعة.</p>
+    </div>
+    <div class="top-actions">
+      <a class="btn" href="index.html">↩ القائمة الأولى (890)</a>
+      <button class="btn" id="btn-export" type="button">⬇ تصدير CSV</button>
+      <button class="btn" id="btn-theme" type="button" aria-label="تبديل الوضع">◐ تلقائي</button>
+    </div>
+  </header>
+  <div class="notice" id="notice" role="note"><span id="notice-text"></span><button type="button" id="notice-x" aria-label="إخفاء التنبيه">×</button></div>
+
+  <section class="kpis" id="kpis" aria-label="ملخص"></section>
+
+  <div class="toolbar" id="toolbar">
+    <div class="row">
+      <label class="search"><span class="sr">بحث</span>
+        <input type="search" id="q" placeholder="ابحث بالاسم أو المشكلة أو المنافس…" autocomplete="off">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </label>
+      <select id="cat" aria-label="الفئة"></select>
+      <select id="sort" aria-label="الترتيب">
+        <option value="score">الأعلى تقييمًا (الأفضل أولًا)</option>
+        <option value="monthly">الأعلى ربحًا شهريًا متوقعًا</option>
+        <option value="margin">الأعلى هامشًا على نون</option>
+        <option value="comp">الأقل منافسة</option>
+        <option value="daily">الأعلى مبيعات يومية</option>
+        <option value="budget">الأقل ميزانية لتجربة 100 قطعة</option>
+        <option value="mult">الأعلى مضاعف سعر</option>
+        <option value="priceAsc">الأرخص سعر بيع</option>
+      </select>
+      <div class="seg" role="group" aria-label="طريقة العرض">
+        <button type="button" id="v-cards" aria-pressed="true">▦ بطاقات</button>
+        <button type="button" id="v-table" aria-pressed="false">☰ جدول</button>
+      </div>
+    </div>
+  </div>
+  <div class="filters2">
+    <div class="chips" id="chips" role="group" aria-label="فلاتر سريعة"></div>
+    <div class="sliders">
+      <label>أقصى منافسة <input type="range" id="s-comp" min="1" max="10" step="1" value="10"><b class="num" id="s-comp-v"></b></label>
+      <label>أقصى ميزانية <input type="range" id="s-budget" min="1000" max="15000" step="250" value="15000"><b class="num" id="s-budget-v"></b></label>
+      <label>أقل مبيعات يومية <input type="range" id="s-daily" min="0" max="8" step="0.5" value="0"><b class="num" id="s-daily-v"></b></label>
+      <button class="btn sm" id="btn-clear" type="button">مسح كل الفلاتر</button>
+    </div>
+  </div>
+
+  <div class="resultline">
+    <span id="count"></span><span class="grow"></span>
+    <span id="legend" class="muted"></span>
+  </div>
+
+  <div id="results"></div>
+
+  <details class="panel" id="p-assume">
+    <summary>⚙ الافتراضات المالية <span class="muted" style="font-weight:400">(عدّلها وشاهد الأرقام تتغير)</span></summary>
+    <div class="inner">
+      <div class="assume" id="assume"></div>
+      <div class="row" style="margin-top:12px"><button class="btn sm" id="btn-reset" type="button">إعادة الافتراضات</button></div>
+    </div>
+  </details>
+
+  <details class="panel" id="p-charts">
+    <summary>📊 التحليلات</summary>
+    <div class="inner charts">
+      <div><h3>المنافسة مقابل الهامش</h3><p class="hint">كل نقطة منتج. الأفضل في الزاوية العلوية اليمنى: منافسة أقل وهامش أعلى. اضغط على نقطة لفتح تفاصيلها.</p><div id="scatter" style="position:relative"></div></div>
+      <div><h3>الفئات</h3><p class="hint">متوسط التقييم لكل فئة. اضغط على فئة لتصفية القائمة. الرقم: عدد المنتجات ومتوسط الهامش.</p><div id="cats"></div></div>
+    </div>
+  </details>
+
+  <details class="panel" id="p-method">
+    <summary>📘 طريقة الحساب والمصادر</summary>
+    <div class="inner" id="method" style="font-size:13.5px;display:grid;gap:8px"></div>
+  </details>
+
+  <footer id="foot"></footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="تفاصيل المنتج" aria-hidden="true">
+  <div class="dhead">
+    <button class="btn sm" id="d-close" type="button" aria-label="إغلاق">✕ إغلاق</button>
+    <span class="grow num" id="d-pos"></span>
+    <button class="btn sm" id="d-prev" type="button" aria-label="المنتج السابق">›</button>
+    <button class="btn sm" id="d-next" type="button" aria-label="المنتج التالي">‹</button>
+  </div>
+  <div class="dbody" id="dbody"></div>
+</aside>
+<div class="tip" id="tip" hidden></div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(() => {
+  'use strict';
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const P = DATA.products, DEFAULTS = DATA.assumptions;
+  const $ = (s) => document.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fm = (v, d = 2) => Number(v).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const f0 = (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 });
+  const f1 = (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: 1 });
+  const pct = (v, d = 0) => (v * 100).toFixed(d) + '%';
+  const safeUrl = (u) => (/^https?:\/\//i.test(String(u || '')) ? u : '');
+  const store = { get(k, d) { try { const v = localStorage.getItem('wp15.' + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+                  set(k, v) { try { localStorage.setItem('wp15.' + k, JSON.stringify(v)); } catch { /* storage unavailable */ } } };
+
+  // ---------- state ----------
+  let A = Object.assign({}, DEFAULTS, store.get('assume', {}));
+  const favs = new Set(store.get('favs', []));
+  const OV = store.get('ov', {});                 // per-product overrides {id:{price,usd,daily}}
+  const S = { q: '', cat: '', quick: new Set(), type: '', maxC: 10, maxB: 15000, minD: 0, sort: 'score', view: innerWidth < 700 ? 'cards' : store.get('view', 'cards'), shown: 60, sel: null, tcol: 'score', tdir: -1 };
+  const TYPES = { weak_comp: ['منافسة ضعيفة', 'g'], us_gap: ['🇺🇸 رائج في أمريكا وغائب هنا', 'i'], improve: ['🔧 فرصة تحسين', 'w'] };
+  const CHIPS = [
+    ['lowc', () => 'منافسة 3 أو أقل', (p) => p.comp <= 3],
+    ['target', () => 'هامش نون ≥ الهدف', (p) => p.m.mn >= A.target],
+    ['both', () => 'مربح على المنصتين', (p) => p.m.mn >= A.ok && p.m.ma >= A.ok],
+    ['nocert', () => 'بدون شهادات', (p) => p.cert === 'لا'],
+    ['mic', () => 'سعر شراء موثّق من المورد', (p) => p.cost_src !== 'est'],
+    ['x5', () => 'مضاعف 5× فأكثر', (p) => p.m.mult >= 5],
+    ['small', () => 'صغير وخفيف', (p) => p.size === 'صغير'],
+    ['fav', () => '★ المفضلة', (p) => favs.has(p.id)],
+  ];
+
+  // ---------- model ----------
+  const eff = (p) => Object.assign({}, p, OV[p.id] || {});
+  function calc(p0) {
+    const p = eff(p0);
+    const factory = p.usd * A.fx * (1 + A.agent), shipping = p.kg * A.ship, duty = (factory + shipping) * A.customs, landed = factory + shipping + duty;
+    const net = p.price / (1 + A.vat), vat = p.price - net, ads = p.price * A.ads, ret = p.price * A.ret;
+    const comN = Math.max(1, p.pct * p.price), comA = Math.max(1, p.amz_pct * p.price);
+    const pn = net - landed - comN - p.fbn - ads - ret, pa = net - landed - comA - p.amz_fee - ads - ret;
+    const mn = pn / net, ma = pa / net, mult = p.price / (p.usd * A.fx);
+    const daily = p.daily * A.salesk, blended = (pn + pa) / 2, monthly = daily * 30 * blended;
+    const qty = A.qty, goods = landed * qty, prep = A.prep * qty, cert = p.cert === 'لا' ? 0 : A.certcost;
+    const budget = goods + prep + A.samples + A.launch + cert;
+    const days = daily > 0 ? qty / daily : Infinity;
+    const back = blended * qty - A.samples - A.launch - cert - prep;
+    const m = { price: p.price, usd: p.usd, buySar: p.usd * A.fx, factory, shipping, duty, landed, net, vat, ads, ret, comN, comA, fbn: p.fbn, amzFee: p.amz_fee,
+      pn, pa, mn, ma, mult, daily, blended, monthly, goods, prep, cert, budget, days, back, roi: back / budget };
+    // same weights as model/build_1500.py
+    const sm = Math.max(0, Math.min(1, (mn + .05) / .45)), sc = (10 - p.comp) / 9, sd = Math.min(1, daily / 6);
+    const se = ({ verified: 1, partial: .6, estimate: .3 }[p.conf] || .3) * .5 + (p.cost_src !== 'est' ? .5 : 0), sx = Math.min(1, Math.max(0, (mult - 4) / 4));
+    m.score = 100 * (.30 * sm + .25 * sc + .20 * sd + .15 * se + .10 * sx);
+    m.rating = mult < 4 ? 'أقل من 4×' : mn >= A.target && p.comp <= 5 ? 'فرصة قوية' : mn >= A.ok ? 'فرصة جيدة' : 'تحتاج دراسة';
+    return m;
+  }
+  const recompute = () => P.forEach((p) => { p.m = calc(p); });
+  const RCLS = { 'فرصة قوية': 'r-start', 'فرصة جيدة': 'r-ok', 'تحتاج دراسة': 'r-weak', 'أقل من 4×': 'r-weak' };
+  const mcls = (m) => (m >= A.target ? 'good' : m >= A.ok ? 'ok' : 'bad');
+  const ccls = (c) => (c <= 3 ? 'good' : c <= 6 ? 'ok' : 'bad');
+
+  // ---------- visuals ----------
+  const CATS = [...new Set(P.map((p) => p.cat))].sort((a, b) => a.localeCompare(b, 'ar'));
+  const EMO = { 'إكسسوارات الجوال والإلكترونيات': '🔌', 'المنزل والمطبخ': '🍳', 'السيارات والدراجات': '🚗', 'التخييم والسفر': '⛺', 'الرياضة واللياقة': '🏋️', 'الأطفال والألعاب': '🧸',
+    'الأدوات والصيانة': '🛠️', 'المكتب والدراسة': '💼', 'الحيوانات الأليفة': '🐾', 'رمضان والمناسبات': '🌙', 'التنظيف والغسيل': '🧼', 'الإضاءة والديكور': '💡',
+    'الحقائب والسفر': '🧳', 'الحديقة والخارج': '🌿', 'الأمان المنزلي': '🔒' };
+  function media(p) {
+    if (!p.img) return `<div class="ph">${EMO[p.cat] || '📦'}</div>`;
+    return `<img src="${esc(p.img)}" alt="${esc(p.ar)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" data-emo="${EMO[p.cat] || '📦'}">`;
+  }
+  document.addEventListener('error', (e) => {
+    const t = e.target; if (t && t.tagName === 'IMG' && t.dataset.emo) { const s = document.createElement('div'); s.className = 'ph'; s.textContent = t.dataset.emo; t.replaceWith(s); }
+  }, true);
+
+  // ---------- filtering ----------
+  function visible() {
+    const q = S.q.trim().toLowerCase();
+    const act = CHIPS.filter(([k]) => S.quick.has(k));
+    return P.filter((p) => (!S.cat || p.cat === S.cat) && (!S.type || p.type === S.type) &&
+      (!q || p.ar.includes(q) || p.en.toLowerCase().includes(q) || p.cat.includes(q) || (p.problem || '').includes(q) || (p.top_comp || '').toLowerCase().includes(q)) &&
+      p.comp <= S.maxC && (S.maxB >= 15000 || p.m.budget <= S.maxB) && p.m.daily >= S.minD && act.every(([, , f]) => f(p)));
+  }
+  const SORTS = { score: (a, b) => b.m.score - a.m.score, monthly: (a, b) => b.m.monthly - a.m.monthly, margin: (a, b) => b.m.mn - a.m.mn, comp: (a, b) => a.comp - b.comp || b.m.score - a.m.score,
+    daily: (a, b) => b.m.daily - a.m.daily, budget: (a, b) => a.m.budget - b.m.budget, mult: (a, b) => b.m.mult - a.m.mult, priceAsc: (a, b) => a.price - b.price };
+  const TCOL = { score: (a, b) => a.m.score - b.m.score, name: (a, b) => a.ar.localeCompare(b.ar, 'ar'), cat: (a, b) => a.cat.localeCompare(b.cat, 'ar'),
+    buy: (a, b) => a.m.buySar - b.m.buySar, price: (a, b) => a.price - b.price, mult: (a, b) => a.m.mult - b.m.mult, mn: (a, b) => a.m.mn - b.m.mn, ma: (a, b) => a.m.ma - b.m.ma,
+    comp: (a, b) => a.comp - b.comp, daily: (a, b) => a.m.daily - b.m.daily, budget: (a, b) => a.m.budget - b.m.budget, monthly: (a, b) => a.m.monthly - b.m.monthly };
+  let rows = [];
+  function sorted(list) {
+    if (S.view === 'table') return list.slice().sort((a, b) => TCOL[S.tcol](a, b) * S.tdir);
+    return list.slice().sort(SORTS[S.sort]);
+  }
+
+  // ---------- render: KPIs ----------
+  function drawKpis() {
+    const strong = P.filter((p) => p.m.rating === 'فرصة قوية').length, lowc = P.filter((p) => p.comp <= 3).length;
+    const avgB = rows.length ? rows.reduce((s, p) => s + p.m.budget, 0) / rows.length : 0;
+    const best = sorted(rows)[0];
+    const k = [
+      ['المنتجات المعروضة', f0(rows.length), `من ${f0(P.length)} فرصة`, null],
+      ['فرص قوية', f0(strong), `هامش نون ≥ ${pct(A.target)} ومنافسة ≤ 5`, 'strong'],
+      ['منافسة 3 من 10 أو أقل', f0(lowc), 'اضغط لعرضها فقط', 'lowc'],
+      [`متوسط ميزانية ${A.qty} قطعة`, f0(avgB) + ' ر.س', 'للنتائج المعروضة', null],
+      ['أول منتج في الترتيب الحالي', best ? esc(best.ar) : '—', best ? `ربح شهري متوقع ${f0(best.m.monthly)} ر.س · منافسة ${best.comp}/10` : '', best ? 'best' : null],
+      ['المفضلة', f0(favs.size), favs.size ? 'اضغط لعرضها' : 'اضغط ★ على أي منتج لحفظه', 'fav'],
+    ];
+    $('#kpis').innerHTML = k.map(([l, v, s, act]) => {
+      const inner = `<span class="l">${l}</span><span class="v ${l.startsWith('أول منتج') ? 'small' : 'num'}">${v}</span><span class="s">${s}</span>`;
+      return act ? `<button type="button" class="kpi" data-act="${act}">${inner}</button>` : `<div class="kpi">${inner}</div>`;
+    }).join('');
+  }
+
+  // ---------- render: results ----------
+  function typeTag(p) { const [l, c] = TYPES[p.type] || TYPES.weak_comp; return `<span class="tag ${c}">${l}</span>`; }
+  function pcard(p) {
+    const m = p.m, c = mcls(m.mn);
+    const tags = [typeTag(p), `<span class="tag ${ccls(p.comp)}">منافسة ${p.comp}/10</span>`];
+    tags.push(p.cert === 'لا' ? '<span class="tag g">بدون شهادات</span>' : `<span class="tag w">${esc(String(p.cert).slice(0, 22))}</span>`);
+    if (p.cost_src !== 'est') tags.push('<span class="tag">سعر مورد موثّق</span>');
+    return `<article class="pc" data-id="${p.id}" tabindex="0" aria-label="${esc(p.ar)}">
+      <div class="media">${media(p)}<span class="badge rate ${RCLS[m.rating]}">${m.rating}</span>
+        <button type="button" class="fav" data-fav="${p.id}" aria-pressed="${favs.has(p.id)}" aria-label="إضافة للمفضلة">${favs.has(p.id) ? '★' : '☆'}</button></div>
+      <div class="pbody"><div class="cat">${EMO[p.cat] || ''} ${esc(p.cat)} · <span class="num">${f0(m.score)}</span>/100</div><h3>${esc(p.ar)}</h3>
+        <div class="nums"><div><small>الشراء</small><b class="num">${fm(m.buySar, 1)}</b></div><div><small>البيع</small><b class="num">${f0(p.price)}</b></div><div class="m"><small>المضاعف</small><b class="num c-${m.mult >= 5 ? 'good' : m.mult >= 4 ? 'ok' : 'bad'}">${fm(m.mult, 1)}×</b></div></div>
+        <div class="nums"><div><small>هامش نون</small><b class="num c-${c}">${pct(m.mn)}</b></div><div><small>بيع/يوم</small><b class="num">${f1(m.daily)}</b></div><div><small>ميزانية ${A.qty}</small><b class="num">${f0(m.budget)}</b></div></div>
+        <div class="tags">${tags.join('')}</div></div></article>`;
+  }
+  const COLS = [['score', 'التقييم'], ['name', 'المنتج'], ['cat', 'الفئة'], ['buy', 'الشراء ر.س'], ['price', 'البيع'], ['mult', 'المضاعف'], ['mn', 'هامش نون'], ['ma', 'هامش أمازون'],
+    ['comp', 'المنافسة'], ['daily', 'بيع/يوم'], ['budget', 'ميزانية 100'], ['monthly', 'ربح شهري']];
+  function drawResults() {
+    const list = sorted(rows); const box = $('#results');
+    $('#count').innerHTML = `يعرض <b class="num">${f0(list.length)}</b> من <b class="num">${f0(P.length)}</b> منتج`;
+    if (!list.length) { box.innerHTML = '<div class="empty"><b>لا توجد منتجات مطابقة</b>جرّب تخفيف الفلاتر أو اضغط «مسح كل الفلاتر».</div>'; return; }
+    const part = list.slice(0, S.shown);
+    const more = list.length > part.length ? `<div class="more"><button class="btn primary" id="btn-more" type="button">عرض المزيد (${f0(list.length - part.length)} متبقي)</button></div>` : '';
+    if (S.view === 'cards') { box.innerHTML = `<div class="grid">${part.map(pcard).join('')}</div>${more}`; return; }
+    box.innerHTML = `<div class="tblwrap"><table><thead><tr><th></th>${COLS.map(([k, l]) => `<th data-k="${k}" ${S.tcol === k ? `aria-sort="${S.tdir > 0 ? 'ascending' : 'descending'}"` : ''}><button type="button" data-sort="${k}">${l}</button></th>`).join('')}</tr></thead>
+      <tbody>${part.map((p) => { const m = p.m;
+        return `<tr data-id="${p.id}" tabindex="0"><td><div class="thumb">${media(p)}</div></td><td class="n"><b>${f0(m.score)}</b></td><td><div class="pn">${esc(p.ar)}</div><div class="pe">${esc(p.en)}</div></td><td>${esc(p.cat)}</td>
+        <td class="n">${fm(m.buySar, 1)}</td><td class="n">${f0(p.price)}</td><td class="n">${fm(m.mult, 1)}×</td><td class="n c-${mcls(m.mn)}"><b>${pct(m.mn)}</b></td><td class="n c-${mcls(m.ma)}">${pct(m.ma)}</td>
+        <td class="n c-${ccls(p.comp)}">${p.comp}/10</td><td class="n">${f1(m.daily)}</td><td class="n">${f0(m.budget)}</td><td class="n">${f0(m.monthly)}</td></tr>`; }).join('')}</tbody></table></div>${more}`;
+  }
+  function drawLegend() { $('#legend').innerHTML = `الهدف <b class="num">${pct(A.target)}</b> · الدولار <b class="num">${A.fx}</b> · كمية التجربة <b class="num">${A.qty}</b>`; }
+
+  // ---------- render: toolbar ----------
+  function drawChips() {
+    const tl = [['', 'كل الأنواع'], ...Object.entries(TYPES).map(([k, [l]]) => [k, l])];
+    $('#chips').innerHTML = tl.map(([k, l]) => `<button type="button" class="chip" data-type="${k}" aria-pressed="${S.type === k}">${l} <span class="muted num">${f0(k ? P.filter((p) => p.type === k).length : P.length)}</span></button>`).join('') +
+      '<span class="muted" style="align-self:center">|</span>' + CHIPS.map(([k, l, f]) => `<button type="button" class="chip" data-chip="${k}" aria-pressed="${S.quick.has(k)}">${l()} <span class="muted num">${f0(P.filter(f).length)}</span></button>`).join('');
+    $('#s-comp-v').textContent = S.maxC >= 10 ? 'الكل' : S.maxC + '/10'; $('#s-budget-v').textContent = S.maxB >= 15000 ? 'بلا حد' : f0(S.maxB) + ' ر.س'; $('#s-daily-v').textContent = S.minD ? S.minD + '+' : 'الكل';
+    $('#v-cards').setAttribute('aria-pressed', S.view === 'cards'); $('#v-table').setAttribute('aria-pressed', S.view === 'table');
+  }
+
+  // ---------- render: charts ----------
+  function drawCharts() {
+    if (!$('#p-charts').open) return;
+    const box = $('#scatter'), W = Math.max(300, box.clientWidth), H = 320, NS = 'http://www.w3.org/2000/svg';
+    const mk = (n, a) => { const e = document.createElementNS(NS, n); Object.entries(a || {}).forEach(([k, v]) => e.setAttribute(k, v)); return e; };
+    const svg = mk('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': 'المنافسة مقابل الهامش' });
+    const ml = 44, mr = 10, mt = 10, mb = 28, ys = P.map((p) => p.m.mn);
+    const ylo = Math.min(-.1, Math.floor(Math.min(...ys) * 10) / 10), yhi = Math.max(A.target + .1, Math.ceil(Math.max(...ys) * 10) / 10);
+    const x = (v) => W - mr - ((v - .5) / 10) * (W - ml - mr), y = (v) => mt + (yhi - v) / (yhi - ylo) * (H - mt - mb);
+    for (let t = Math.ceil(ylo * 10) / 10; t <= yhi + 1e-9; t = Math.round((t + .1) * 10) / 10) {
+      svg.append(mk('line', { x1: ml, x2: W - mr, y1: y(t), y2: y(t), stroke: 'var(--line)' }));
+      const tx = mk('text', { x: ml - 6, y: y(t) + 4, 'text-anchor': 'end', 'font-size': 11, fill: 'var(--muted)' }); tx.textContent = pct(t); svg.append(tx);
+    }
+    for (let v = 1; v <= 10; v++) { const tx = mk('text', { x: x(v), y: H - 8, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }); tx.textContent = v; svg.append(tx); }
+    svg.append(mk('line', { x1: ml, x2: W - mr, y1: y(A.target), y2: y(A.target), stroke: 'var(--fg)', 'stroke-dasharray': '5 4' }));
+    const ids = new Set(rows.map((p) => p.id)), tip = $('#tip');
+    const COL = { 'فرصة قوية': 'var(--good)', 'فرصة جيدة': 'var(--warn)', 'تحتاج دراسة': 'var(--bad)', 'أقل من 4×': 'var(--bad)' };
+    P.forEach((p, i) => { const on = ids.has(p.id), jit = ((i * 37) % 11 - 5) / 14;
+      const c = mk('circle', { cx: x(p.comp + jit), cy: y(p.m.mn), r: p.id === S.sel ? 7 : 3.5, fill: COL[p.m.rating], 'fill-opacity': on ? .7 : .1, stroke: p.id === S.sel ? 'var(--fg)' : 'none', style: 'cursor:pointer' });
+      c.addEventListener('mousemove', (e) => { tip.hidden = false; tip.innerHTML = `<b>${esc(p.ar)}</b><br><span class="muted">منافسة ${p.comp}/10 · هامش ${pct(p.m.mn, 1)}</span>`;
+        tip.style.left = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8) + 'px'; tip.style.top = (e.clientY + 14) + 'px'; });
+      c.addEventListener('mouseleave', () => { tip.hidden = true; }); c.addEventListener('click', () => open(p.id)); svg.append(c); });
+    box.replaceChildren(svg);
+    const g = CATS.map((c) => { const a = P.filter((p) => p.cat === c); return { c, n: a.length, sc: a.reduce((s, p) => s + p.m.score, 0) / a.length, mg: a.reduce((s, p) => s + p.m.mn, 0) / a.length }; }).sort((a, b) => b.sc - a.sc);
+    $('#cats').innerHTML = g.map((r) => `<button type="button" class="catrow" data-cat="${esc(r.c)}" aria-pressed="${S.cat === r.c}"><span>${EMO[r.c] || ''} ${esc(r.c)}</span><span class="bar"><i style="width:${Math.max(3, r.sc)}%"></i></span><span class="n num">${f0(r.sc)} · ${r.n} · ${pct(r.mg)}</span></button>`).join('');
+  }
+
+  // ---------- drawer ----------
+  let lastFocus = null;
+  const link = (u, t) => (safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${t} ↗</a>` : '');
+  function open(id) {
+    S.sel = id; lastFocus = document.activeElement; const p = P.find((x) => x.id === id); if (!p) return;
+    const m = p.m, ov = OV[id] || {}, pos = sorted(rows).findIndex((x) => x.id === id);
+    const parts = [['سعر الشراء + الوكيل', m.factory, '#7c5cff'], ['الشحن والجمارك', m.shipping + m.duty, '#9b87ff'], ['رسوم FBN', m.fbn, '#f0883e'], ['عمولة نون', m.comN, '#f5b361'],
+      ['الإعلانات والمرتجعات', m.ads + m.ret, '#d97aa6'], ['ضريبة القيمة المضافة', m.vat, '#8b97a8'], ['صافي الربح', Math.max(0, m.pn), 'var(--good)']];
+    const tot = parts.reduce((s, x) => s + x[1], 0) || 1;
+    const stack = parts.map(([l, v, col]) => `<i style="width:${(v / tot * 100).toFixed(2)}%;background:${col}" title="${l}"></i>`).join('');
+    const legend = parts.map(([l, v, col]) => `<span><i style="background:${col}"></i>${l}<b class="num">${fm(v)}</b></span>`).join('');
+    const kw = encodeURIComponent(p.en), kwu = kw.replace(/%20/g, '_');
+    const links = [['نون', 'https://www.noon.com/saudi-en/search/?q=' + kw], ['أمازون السعودية', 'https://www.amazon.sa/s?k=' + kw], ['أمازون أمريكا', 'https://www.amazon.com/s?k=' + kw],
+      ['علي بابا', 'https://www.alibaba.com/trade/search?SearchText=' + kw], ['Made-in-China', 'https://www.made-in-china.com/products-search/hot-china-products/' + kwu + '.html']];
+    const tops = (p.mic_top || []).map((t) => `<li>${link(t.url, esc(String(t.title).slice(0, 70)))} <span class="muted num">$${t.lo}${t.hi && t.hi !== t.lo ? '–' + t.hi : ''}${t.moq ? ' · MOQ ' + f0(t.moq) : ''}</span></li>`).join('');
+    const imp = p.improve ? `<div class="box" style="border-color:var(--warn)"><h3>🔧 ${p.type === 'improve' ? 'فرصة التحسين (من تعليقات العملاء)' : 'تحسينات مقترحة'}</h3><p>${esc(p.improve)}</p>${link(p.review_url, 'مصدر التعليقات')}</div>` : '';
+    const daysTxt = isFinite(m.days) ? `${f0(m.days)} يوم` : '—';
+    $('#dbody').innerHTML = `
+      <div class="dhero">${media(p)}${p.img ? '<small>صورة تقريبية من مورّد</small>' : ''}</div>
+      <div class="dtitle"><h2>${esc(p.ar)}</h2><div class="en">${esc(p.en)}</div></div>
+      <div class="row"><span class="rate ${RCLS[m.rating]}">${m.rating}</span>${typeTag(p)}<span class="tag">${EMO[p.cat] || ''} ${esc(p.cat)}</span><span class="tag">${esc(p.season)}</span><span class="tag">${esc(p.size)} · ${p.kg} كجم</span>
+        <button type="button" class="btn sm" data-fav="${p.id}" aria-pressed="${favs.has(p.id)}" style="margin-inline-start:auto">${favs.has(p.id) ? '★ في المفضلة' : '☆ أضف للمفضلة'}</button></div>
+      <div class="box"><h3>💡 المشكلة التي يحلها</h3><p>${esc(p.problem || '—')}</p></div>
+      ${imp}
+      <div class="box"><div class="bigm"><span class="v num">${fm(m.mult, 1)}×</span><span class="muted">سعر البيع ÷ سعر الشراء</span><span class="muted" style="margin-inline-start:auto">التقييم <b class="num" style="color:var(--fg)">${f0(m.score)}</b>/100</span></div>
+        <dl class="kv"><dt>سعر الشراء (${p.cost_src === 'mic' ? 'موثّق من المورد' : 'تقدير'})</dt><dd>$${fm(m.usd)} = ${fm(m.buySar)} ر.س</dd><dt>سعر البيع المقترح</dt><dd>${f0(p.price)} ر.س</dd>
+        <dt>التكلفة الواصلة للمستودع</dt><dd>${fm(m.landed)} ر.س</dd></dl></div>
+      <div class="box"><h3>🛒 الربح للقطعة حسب المنصة</h3><dl class="kv">
+        <dt>نون: عمولة ${pct(p.pct, 1)} + FBN ${fm(m.fbn)}</dt><dd class="c-${mcls(m.mn)}"><b>${fm(m.pn)} ر.س · ${pct(m.mn, 1)}</b></dd>
+        <dt>أمازون السعودية: عمولة ${pct(p.amz_pct)} + FBA ≈${fm(m.amzFee)}</dt><dd class="c-${mcls(m.ma)}"><b>${fm(m.pa)} ر.س · ${pct(m.ma, 1)}</b></dd></dl>
+        <div class="stack" role="img" aria-label="توزيع سعر البيع على نون">${stack}</div><div class="legend">${legend}</div></div>
+      <div class="box"><h3>💰 تجربة ${A.qty} قطعة</h3><dl class="kv">
+        <dt>البضاعة واصلة (${A.qty} × ${fm(m.landed)})</dt><dd>${f0(m.goods)}</dd><dt>تجهيز وملصقات وإدخال المستودع</dt><dd>${f0(m.prep)}</dd><dt>عينات من 2 إلى 3 موردين</dt><dd>${f0(A.samples)}</dd>
+        <dt>إعلانات الإطلاق (أول شهر)</dt><dd>${f0(A.launch)}</dd><dt>شهادات (${esc(p.cert === 'لا' ? 'لا يحتاج' : p.cert)})</dt><dd>${f0(m.cert)}</dd><dt class="t">الميزانية المطلوبة</dt><dd class="t">${f0(m.budget)} ر.س</dd></dl>
+        <dl class="kv"><dt>المبيعات اليومية المتوقعة (نون + أمازون)</dt><dd>${f1(m.daily)} قطعة</dd><dt>مدة بيع ${A.qty} قطعة</dt><dd>${daysTxt}</dd>
+        <dt>الربح الشهري المتوقع</dt><dd>${f0(m.monthly)} ر.س</dd><dt>صافي بعد بيع ${A.qty} قطعة (بعد كل المصاريف)</dt><dd class="c-${m.back >= 0 ? 'good' : 'bad'}">${f0(m.back)} ر.س</dd></dl></div>
+      <div class="box"><h3>🧮 جرّب أرقامك</h3><div class="ov">
+        <label>سعر البيع (ر.س)<input type="number" inputmode="decimal" step="1" id="ov-price" value="${ov.price ?? p.price}"></label>
+        <label>سعر الشراء ($)<input type="number" inputmode="decimal" step="0.1" id="ov-usd" value="${ov.usd ?? p.usd}"></label>
+        <label>المبيعات اليومية<input type="number" inputmode="decimal" step="0.5" id="ov-daily" value="${ov.daily ?? p.daily}"></label></div>
+        ${Object.keys(ov).length ? '<div class="row"><button type="button" class="btn sm" id="ov-reset">إلغاء التعديل</button></div>' : ''}</div>
+      <div class="box"><h3>🇸🇦 المنافسة: <span class="num c-${ccls(p.comp)}">${p.comp}/10</span></h3><div class="meter" aria-hidden="true"><i style="width:${p.comp * 10}%;background:var(--${ccls(p.comp) === 'good' ? 'good' : ccls(p.comp) === 'ok' ? 'warn' : 'bad'})"></i></div>
+        <p><b>أكبر منافس:</b> ${esc(p.top_comp || '—')}</p><p><b>البدائل المشابهة:</b> ${esc(p.subs || '—')}</p>
+        ${p.comp_ev ? `<p class="muted" style="font-size:12.5px">${esc(p.comp_ev)}</p>` : ''}${link(p.comp_url, 'رابط المنافس / البحث')}</div>
+      <div class="box"><h3>📈 الطلب</h3>${p.us_units ? `<p>🇺🇸 ≈ <b class="num">${f0(p.us_units)}</b> وحدة شهريًا في أمازون أمريكا (تقدير).</p>` : ''}<p class="muted" style="font-size:12.5px">${esc(p.demand_ev || '—')}</p>${link(p.demand_url, 'مصدر الطلب')}</div>
+      <div class="box"><h3>🏭 المورد</h3><p>${p.cost_src === 'mic' ? `متوسط ${p.mic_n} قوائم مطابقة على Made-in-China${p.pack ? ` (سعر القطعة × ${p.pack} لأن المنتج عبوة من ${p.pack})` : ''}: <b class="num">$${fm(p.usd)}</b> (النطاق ${esc(p.mic_range)}${p.mic_moq ? ' · MOQ نموذجي ' + f0(p.mic_moq) : ''})` : `تقدير الباحث: $${fm(p.usd_agent)} ${p.buy_range ? '(' + esc(p.buy_range) + ')' : ''}${p.cost_src === 'est_mic_lower' ? ` · قوائم Made-in-China المطابقة أرخص (متوسط $${fm(p.mic_usd)}، النطاق ${esc(p.mic_range)}) لكن اعتمدنا التقدير الأعلى احتياطًا` : ''}`}</p>
+        ${tops ? `<ul style="margin:0;padding-inline-start:18px;font-size:12.5px;display:grid;gap:4px">${tops}</ul>` : ''}${link(p.supplier_url, 'رابط المنتج عند المورد')}
+        <p class="muted" style="font-size:12.5px">الشهادات: ${esc(p.cert)} · ثقة البيانات: ${{ verified: 'موثّق', partial: 'جزئي', estimate: 'تقدير' }[p.conf]}</p></div>
+      <div class="links">${links.map(([n, u]) => `<a href="${u}" target="_blank" rel="noopener">${n} ↗</a>`).join('')}<button type="button" class="btn sm" id="copy-kw">نسخ كلمة البحث</button></div>
+      ${p.img ? `<p class="credit">الصورة من قوائم موردين على Made-in-China.com${p.img_title ? ' («' + esc(p.img_title.slice(0, 60)) + '»)' : ''} وقد تكون لمنتج مشابه.</p>` : ''}`;
+    $('#d-pos').textContent = pos >= 0 ? `${pos + 1} / ${rows.length}` : '';
+    $('#drawer').classList.add('on'); $('#scrim').classList.add('on'); $('#drawer').setAttribute('aria-hidden', 'false'); $('#dbody').scrollTop = 0; $('#d-close').focus({ preventScroll: true });
+    document.body.style.overflow = 'hidden';
+  }
+  function close() { $('#drawer').classList.remove('on'); $('#scrim').classList.remove('on'); $('#drawer').setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; S.sel = null; if (lastFocus) lastFocus.focus?.({ preventScroll: true }); }
+  const step = (d) => { const l = sorted(rows); const i = l.findIndex((x) => x.id === S.sel); if (i < 0) return; const n = l[(i + d + l.length) % l.length]; open(n.id); };
+
+  // ---------- assumptions ----------
+  const GROUPS = [['التكاليف', [['fx', 'سعر الدولار (ر.س)', .01], ['agent', 'رسوم وكيل الشراء', .01], ['ship', 'الشحن الدولي (ر.س/كجم)', .5], ['customs', 'الجمارك', .01]]],
+    ['رسوم البيع', [['vat', 'ضريبة القيمة المضافة', .01], ['ads', 'الإعلانات (من السعر)', .01], ['ret', 'المرتجعات والتالف', .01]]],
+    ['تجربة المنتج', [['qty', 'كمية التجربة (قطعة)', 10], ['prep', 'تجهيز وملصقات (ر.س/قطعة)', .5], ['samples', 'العينات (ر.س)', 50], ['launch', 'إعلانات الإطلاق (ر.س)', 50], ['certcost', 'تكلفة الشهادة إن لزمت (ر.س)', 100]]],
+    ['الأهداف', [['target', 'الهامش المستهدف', .01], ['ok', 'الهامش المقبول', .01], ['salesk', 'معامل المبيعات اليومية', .1]]]];
+  function buildAssume() {
+    $('#assume').innerHTML = GROUPS.map(([g, items]) => `<fieldset><legend>${g}</legend>${items.map(([k, l, st]) => `<label>${l}<input type="number" step="${st}" data-as="${k}" value="${A[k]}"></label>`).join('')}</fieldset>`).join('');
+  }
+
+  // ---------- refresh ----------
+  let raf = 0;
+  function refresh(keepShown) {
+    if (!keepShown) S.shown = 60;
+    recompute(); rows = visible();
+    drawKpis(); drawChips(); drawLegend(); drawResults(); drawCharts();
+    if ($('#drawer').classList.contains('on') && S.sel != null) { const keep = $('#dbody').scrollTop; open(S.sel); $('#dbody').scrollTop = keep; }
+  }
+  const later = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(() => refresh()); };
+
+  // ---------- events ----------
+  $('#q').addEventListener('input', (e) => { S.q = e.target.value; later(); });
+  $('#cat').addEventListener('change', (e) => { S.cat = e.target.value; refresh(); });
+  $('#sort').addEventListener('change', (e) => { S.sort = e.target.value; refresh(); });
+  $('#s-comp').addEventListener('input', (e) => { S.maxC = +e.target.value; later(); });
+  $('#s-budget').addEventListener('input', (e) => { S.maxB = +e.target.value; later(); });
+  $('#s-daily').addEventListener('input', (e) => { S.minD = +e.target.value; later(); });
+  $('#v-cards').addEventListener('click', () => { S.view = 'cards'; store.set('view', 'cards'); refresh(true); });
+  $('#v-table').addEventListener('click', () => { S.view = 'table'; store.set('view', 'table'); refresh(true); });
+  $('#btn-clear').addEventListener('click', () => { Object.assign(S, { q: '', cat: '', type: '', maxC: 10, maxB: 15000, minD: 0 }); S.quick.clear(); $('#q').value = ''; $('#cat').value = ''; $('#s-comp').value = 10; $('#s-budget').value = 15000; $('#s-daily').value = 0; refresh(); });
+  $('#chips').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.type != null) S.type = b.dataset.type; else if (b.dataset.chip) { const k = b.dataset.chip; S.quick.has(k) ? S.quick.delete(k) : S.quick.add(k); } refresh(); });
+  $('#kpis').addEventListener('click', (e) => { const b = e.target.closest('button[data-act]'); if (!b) return; const a = b.dataset.act;
+    if (a === 'best') { const l = sorted(rows); if (l[0]) open(l[0].id); return; }
+    if (a === 'strong') { S.sort = 'score'; $('#sort').value = 'score'; S.quick.has('target') ? S.quick.delete('target') : S.quick.add('target'); S.maxC = S.maxC === 5 ? 10 : 5; $('#s-comp').value = S.maxC; }
+    else { S.quick.has(a) ? S.quick.delete(a) : S.quick.add(a); }
+    refresh(); document.getElementById('results').scrollIntoView({ block: 'start' }); });
+  $('#results').addEventListener('click', (e) => {
+    const fb = e.target.closest('[data-fav]'); if (fb) { e.stopPropagation(); toggleFav(+fb.dataset.fav); return; }
+    if (e.target.closest('#btn-more')) { S.shown += 60; refresh(true); return; }
+    const sb = e.target.closest('[data-sort]'); if (sb) { const k = sb.dataset.sort; if (S.tcol === k) S.tdir = -S.tdir; else { S.tcol = k; S.tdir = ['name', 'cat', 'comp', 'budget', 'buy'].includes(k) ? 1 : -1; } refresh(true); return; }
+    const pc = e.target.closest('[data-id]'); if (pc) open(+pc.dataset.id); });
+  $('#results').addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-id]')) { e.preventDefault(); open(+e.target.dataset.id); } });
+  function toggleFav(id) { favs.has(id) ? favs.delete(id) : favs.add(id); store.set('favs', [...favs]); refresh(true); }
+  $('#dbody').addEventListener('click', (e) => {
+    const fb = e.target.closest('[data-fav]'); if (fb) { toggleFav(+fb.dataset.fav); return; }
+    if (e.target.id === 'ov-reset') { delete OV[S.sel]; store.set('ov', OV); refresh(true); return; }
+    if (e.target.id === 'copy-kw') { const p = P.find((x) => x.id === S.sel); (navigator.clipboard ? navigator.clipboard.writeText(p.en) : Promise.reject()).then(() => { e.target.textContent = 'تم النسخ ✓'; }, () => { e.target.textContent = p.en; }); } });
+  $('#dbody').addEventListener('change', (e) => { if (!['ov-price', 'ov-usd', 'ov-daily'].includes(e.target.id)) return; const p = P.find((x) => x.id === S.sel); const o = OV[S.sel] || {};
+    const vals = { price: parseFloat($('#ov-price').value), usd: parseFloat($('#ov-usd').value), daily: parseFloat($('#ov-daily').value) };
+    Object.entries(vals).forEach(([k, v]) => { if (!isNaN(v) && v > 0 && v !== p[k]) o[k] = v; else delete o[k]; });
+    Object.keys(o).length ? OV[S.sel] = o : delete OV[S.sel]; store.set('ov', OV); refresh(true); });
+  $('#cats').addEventListener('click', (e) => { const b = e.target.closest('[data-cat]'); if (!b) return; S.cat = S.cat === b.dataset.cat ? '' : b.dataset.cat; $('#cat').value = S.cat; refresh(); });
+  $('#p-charts').addEventListener('toggle', () => drawCharts());
+  $('#assume').addEventListener('input', (e) => { const k = e.target.dataset.as; if (!k) return; const v = parseFloat(e.target.value); if (!isNaN(v)) { A[k] = v; store.set('assume', A); later(); } });
+  $('#btn-reset').addEventListener('click', () => { A = Object.assign({}, DEFAULTS); store.set('assume', {}); buildAssume(); refresh(); });
+  $('#d-close').addEventListener('click', close); $('#scrim').addEventListener('click', close);
+  $('#d-prev').addEventListener('click', () => step(-1)); $('#d-next').addEventListener('click', () => step(1));
+  addEventListener('keydown', (e) => { if (!$('#drawer').classList.contains('on')) { if (e.key === '/' && document.activeElement.tagName !== 'INPUT') { e.preventDefault(); $('#q').focus(); } return; }
+    if (e.key === 'Escape') close(); else if (e.target.tagName !== 'INPUT') { if (e.key === 'ArrowLeft') step(1); else if (e.key === 'ArrowRight') step(-1); } });
+  addEventListener('resize', () => { drawCharts(); });
+  $('#btn-export').addEventListener('click', () => {
+    const list = sorted(rows), q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"', r2 = (v) => Math.round(v * 100) / 100;
+    const cols = [['الترتيب', (p) => p.rank], ['التقييم', (p) => r2(p.m.score)], ['المنتج', (p) => p.ar], ['كلمة البحث', (p) => p.en], ['الفئة', (p) => p.cat], ['النوع', (p) => (TYPES[p.type] || [''])[0]],
+      ['المشكلة', (p) => p.problem], ['سعر الشراء $', (p) => p.m.usd], ['مصدر سعر الشراء', (p) => ({ mic: 'Made-in-China موثّق', est_mic_lower: 'تقدير (المورد أرخص)', est: 'تقدير' }[p.cost_src])], ['سعر الشراء ر.س', (p) => r2(p.m.buySar)],
+      ['سعر البيع ر.س', (p) => p.price], ['المضاعف', (p) => r2(p.m.mult)], ['ربح نون/قطعة', (p) => r2(p.m.pn)], ['هامش نون', (p) => r2(p.m.mn)], ['ربح أمازون/قطعة', (p) => r2(p.m.pa)], ['هامش أمازون', (p) => r2(p.m.ma)],
+      ['المنافسة من 10', (p) => p.comp], ['أكبر منافس', (p) => p.top_comp], ['البدائل', (p) => p.subs], ['التحسين المقترح', (p) => p.improve], ['بيع يومي متوقع', (p) => r2(p.m.daily)],
+      [`ميزانية ${A.qty} قطعة`, (p) => Math.round(p.m.budget)], ['ربح شهري متوقع', (p) => Math.round(p.m.monthly)], ['الوزن كجم', (p) => p.kg], ['الشهادات', (p) => p.cert], ['الطلب الأمريكي/شهر', (p) => p.us_units],
+      ['رابط المورد', (p) => p.supplier_url], ['رابط الصورة', (p) => p.img], ['رابط المنافس', (p) => p.comp_url], ['مصدر الطلب', (p) => p.demand_url], ['ثقة البيانات', (p) => p.conf]];
+    const lines = [cols.map(([l]) => q(l)).join(',')];
+    list.forEach((p) => lines.push(cols.map(([, f]) => q(f(p))).join(',')));
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + lines.join('\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'product-opportunities.csv'; document.body.append(a); a.click(); a.remove();
+  });
+  // theme
+  const root = document.documentElement, modes = ['auto', 'light', 'dark'], lbl = { auto: '◐ تلقائي', light: '☀ فاتح', dark: '☾ داكن' }; let mode = Math.max(0, modes.indexOf(store.get('theme', 'auto')));
+  const applyTheme = () => { const m = modes[mode]; m === 'auto' ? root.removeAttribute('data-theme') : root.setAttribute('data-theme', m); $('#btn-theme').textContent = lbl[m]; };
+  $('#btn-theme').addEventListener('click', () => { mode = (mode + 1) % 3; store.set('theme', modes[mode]); applyTheme(); drawCharts(); });
+  $('#notice-text').addEventListener('click', () => $('#notice').classList.toggle('open'));
+  $('#notice-x').addEventListener('click', () => { $('#notice').hidden = true; store.set('hideNotice', DATA.notice.length); });
+
+  // ---------- init ----------
+  $('#cat').innerHTML = '<option value="">كل الفئات</option>' + CATS.map((c) => `<option value="${esc(c)}">${EMO[c] || ''} ${esc(c)} (${P.filter((p) => p.cat === c).length})</option>`).join('');
+  $('#notice-text').textContent = DATA.notice; if (store.get('hideNotice', 0) === DATA.notice.length) $('#notice').hidden = true;
+  $('#method').innerHTML = `
+    <p><b>المعايير:</b> سعر بيع بين 50 و200 ريال، وسعر البيع 4 أضعاف سعر الشراء على الأقل، وبدون منتجات الصحة والتجميل والعناية والعطور والأغذية والأجهزة الطبية، وبدون منتجات تحتاج موافقات ثقيلة، ووزن 3 كجم أو أقل، ولا يكرر منتجات القائمة الأولى (890).</p>
+    <p><b>سعر الشراء:</b> عندما يظهر «سعر مورد موثّق» فهو متوسط منتصف نطاق الأسعار لعدة قوائم مطابقة على Made-in-China، وإلا فهو تقدير الباحث من علي بابا. الشرط 4× محسوب على هذا السعر.</p>
+    <p><b>الربح:</b> صافي البيع بدون الضريبة، ناقص التكلفة الواصلة (الشراء + وكيل ${pct(A.agent)} + شحن ${A.ship} ر.س/كجم + جمارك ${pct(A.customs)})، وعمولة المنصة، ورسوم التوصيل (FBN لنون من الجدول الرسمي، وFBA لأمازون تقديرًا)، و${pct(A.ads)} إعلانات و${pct(A.ret)} مرتجعات.</p>
+    <p><b>المنافسة من 10:</b> 1 تعني لا يوجد تقريبًا من يبيعه في السعودية، و10 تعني سوق مشبع بماركات قوية. تُحسب معها البدائل المشابهة الأرخص لأنها تأخذ من حصة المنتج.</p>
+    <p><b>المبيعات اليومية:</b> تقدير متحفظ لبائع جديد على نون وأمازون معًا بعد شهر تقريبًا مع إعلانات بسيطة. عدّل «معامل المبيعات» لتشديده أو تخفيفه.</p>
+    <p><b>ميزانية التجربة:</b> البضاعة واصلة × الكمية، والتجهيز والملصقات، والعينات، وإعلانات الإطلاق، وتكلفة الشهادة إن لزمت. لاحظ أن كثيرًا من المصانع تطلب حدًا أدنى أكبر من 100 قطعة، فاسأل عن طلب تجريبي.</p>
+    <p><b>التقييم من 100:</b> 30% هامش نون، و25% ضعف المنافسة، و20% المبيعات اليومية، و15% قوة الأدلة، و10% المضاعف فوق 4×.</p>`;
+  $('#foot').innerHTML = 'المصادر: جدول رسوم نون الرسمي للسعودية (ساري من 1 سبتمبر 2025)، وقوائم موردين عامة في Made-in-China.com (أكتوبر 2026)، وبحث في أمازون أمريكا وأمازون السعودية ونون ومراجعات العملاء. صور المنتجات من قوائم موردين وقد تكون لمنتج مشابه. اطلب عروض أسعار وعينات قبل أي طلب.';
+  applyTheme(); buildAssume(); refresh();
+})();
+</script>
+</body>
+</html>

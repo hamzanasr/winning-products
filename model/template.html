@@ -47,6 +47,7 @@ a { color: var(--accent); }
 .top-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 7px 14px; display: inline-flex; gap: 6px; align-items: center; transition: background .15s, border-color .15s; }
 .btn:hover { background: var(--soft); }
+a.btn { text-decoration: none; color: inherit; }
 .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
 .btn.primary:hover { filter: brightness(1.08); }
 .btn.sm { padding: 4px 10px; font-size: 12.5px; border-radius: 8px; }
@@ -219,6 +220,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
       <p>لوحة لاختيار المنتجات الرابحة للبيع على نون السعودية: تحسب الهامش من رسوم نون الرسمية وتكلفة المصنع، وتتحدّث النتائج فور تعديل الافتراضات.</p>
     </div>
     <div class="top-actions">
+      <a class="btn" href="opportunities.html">✨ 1500 فرصة جديدة</a>
       <button class="btn" id="btn-export" type="button">⬇ تصدير CSV</button>
       <button class="btn" id="btn-theme" type="button" aria-label="تبديل الوضع">◐ تلقائي</button>
     </div>
