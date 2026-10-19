@@ -3,7 +3,7 @@
 For each product keyword: matching listings, their ratings, stars, prices, sales badges.
 Usage: python model/amz_comp.py <in.json> <out.json>   (in = list of {"en", "price"})
 Pages are cached in ../amz_cache."""
-import json, os, re, sys, time, random, hashlib, statistics, datetime, urllib.request, urllib.parse
+import json, os, re, sys, time, subprocess, random, hashlib, statistics, datetime, urllib.request, urllib.parse
 TODAY = datetime.date(2026, 10, 19)
 from concurrent.futures import ThreadPoolExecutor
 
@@ -23,11 +23,14 @@ def fetch(kw):
         return open(path, encoding="utf-8", errors="ignore").read()
     if os.environ.get("AMZ_OFFLINE"):
         return None
+    time.sleep(float(os.environ.get("AMZ_DELAY", "0")))   # polite spacing for long unattended runs
     url = "https://www.amazon.sa/s?k=" + urllib.parse.quote_plus(kw) + "&language=en_AE"
     for i in range(4):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9", "Accept": "text/html"})
-            h = urllib.request.urlopen(req, timeout=40).read().decode("utf-8", "ignore")
+            # curl is accepted where Python's urllib gets 503 (TLS/header fingerprint)
+            r = subprocess.run(["curl", "-sL", "--compressed", "--max-time", "40", "-A", UA, "-H", "Accept-Language: en-US,en;q=0.9", url],
+                               capture_output=True, timeout=60)
+            h = r.stdout.decode("utf-8", "ignore")
             if "s-search-result" in h or "No results for" in h:
                 open(path, "w", encoding="utf-8").write(h)
                 return h
@@ -110,7 +113,7 @@ if __name__ == "__main__":
     todo = [p for p in P if p["en"] not in done]
     print("todo", len(todo), flush=True)
     fails = 0
-    with ThreadPoolExecutor(3) as ex:
+    with ThreadPoolExecutor(int(os.environ.get("AMZ_THREADS", "3"))) as ex:
         for i, (p, r) in enumerate(zip(todo, ex.map(analyse, todo))):
             if r is None:
                 fails += 1

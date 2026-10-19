@@ -21,7 +21,7 @@ CATS = {"إكسسوارات الجوال والإلكترونيات": "E", "ال
 AMZ = {"C": 0.12, "D": 0.12, "O": 0.12, "G": 0.12}
 BANNED = re.compile(r"\b(serum|cream|lotion|shampoo|perfume|fragrance|cosmetic|makeup|lipstick|skincare|skin care|hair growth|supplement|vitamin|"
                     r"medical|blood pressure|thermometer|glucose|pill|tooth|dental|razor|shaver|epilator|nail|eyelash|beard|wig|massage oil|essential oil|"
-                    r"massage|massager|carbon monoxide|smoke detector|battery pack|rechargeable batteries|baby bottle|pacifier|teether|breast|drone|walkie|knife sharpener rod|taser|stun|pepper spray|e-cig|vape)\b", re.I)
+                    r"massage|massager|detergent|dishwasher tablet|laundry pods|cleaning tablets|carbon monoxide|smoke detector|battery pack|rechargeable batteries|baby bottle|pacifier|teether|breast|drone|walkie|knife sharpener rod|taser|stun|pepper spray|e-cig|vape)\b", re.I)
 STOP = {"for", "with", "and", "the", "a", "of", "in", "to", "set", "pcs", "pack", "kit"}
 
 
