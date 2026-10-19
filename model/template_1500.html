@@ -216,7 +216,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <h1>1500 فرصة منتج</h1>
+      <h1>فرص منتجات مقاسة</h1>
       <p>منتجات للبيع في السوق السعودي على نون وأمازون: سعر بيع بين 50 و200 ريال، وأربعة أضعاف سعر الشراء على الأقل، ومعها المنافسة من 10 وميزانية تجربة 100 قطعة والمبيعات اليومية المتوقعة.</p>
     </div>
     <div class="top-actions">
@@ -326,7 +326,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   const favs = new Set(store.get('favs', []));
   const OV = store.get('ov', {});                 // per-product overrides {id:{price,usd,daily}}
   const S = { q: '', cat: '', quick: new Set(), type: '', maxC: 10, maxB: 15000, minD: 0, sort: 'score', view: innerWidth < 700 ? 'cards' : store.get('view', 'cards'), shown: 60, sel: null, tcol: 'score', tdir: -1 };
-  const TYPES = { weak_comp: ['منافسة ضعيفة', 'g'], us_gap: ['🇺🇸 رائج في أمريكا وغائب هنا', 'i'], improve: ['🔧 فرصة تحسين', 'w'] };
+  const TYPES = { weak_comp: ['منافسة ضعيفة', 'g'], us_gap: ['🇺🇸 رائج في أمريكا وغائب هنا', 'i'], improve: ['🔧 فرصة تحسين', 'w'], mid_comp: ['منافسة متوسطة (5–6)', ''] };
   const CHIPS = [
     ['lowc', () => 'منافسة 3 أو أقل', (p) => p.comp <= 3],
     ['target', () => 'هامش نون ≥ الهدف', (p) => p.m.mn >= A.target],
@@ -451,7 +451,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
 
   // ---------- render: toolbar ----------
   function drawChips() {
-    const tl = [['', 'كل الأنواع'], ...Object.entries(TYPES).map(([k, [l]]) => [k, l])];
+    const tl = [['', 'كل الأنواع'], ...Object.entries(TYPES).filter(([k]) => P.some((p) => p.type === k)).map(([k, [l]]) => [k, l])];
     $('#chips').innerHTML = tl.map(([k, l]) => `<button type="button" class="chip" data-type="${k}" aria-pressed="${S.type === k}">${l} <span class="muted num">${f0(k ? P.filter((p) => p.type === k).length : P.length)}</span></button>`).join('') +
       '<span class="muted" style="align-self:center">|</span>' + CHIPS.map(([k, l, f]) => `<button type="button" class="chip" data-chip="${k}" aria-pressed="${S.quick.has(k)}">${l()} <span class="muted num">${f0(P.filter(f).length)}</span></button>`).join('');
     $('#s-comp-v').textContent = S.maxC >= 10 ? 'الكل' : S.maxC + '/10'; $('#s-budget-v').textContent = S.maxB >= 15000 ? 'بلا حد' : f0(S.maxB) + ' ر.س'; $('#s-daily-v').textContent = S.minD ? S.minD + '+' : 'الكل';

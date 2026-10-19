@@ -2,9 +2,9 @@
 """Writes data/opportunities_1500.csv (Excel-friendly, UTF-8 BOM) with the default assumptions."""
 import csv, json, os
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-D = json.load(open(os.path.join(root, "data", "products_1500.json"), encoding="utf-8"))
+D = json.load(open(os.path.join(root, "data", "products_v2.json"), encoding="utf-8"))
 A, P = D["assumptions"], D["products"]
-TYPES = {"weak_comp": "منافسة ضعيفة", "us_gap": "رائج في أمريكا وغائب في السعودية", "improve": "فرصة تحسين"}
+TYPES = {"weak_comp": "منافسة ضعيفة", "us_gap": "رائج في أمريكا وغائب في السعودية", "improve": "فرصة تحسين", "mid_comp": "منافسة متوسطة"}
 SRC = {"mic": "Made-in-China موثّق", "est_mic_lower": "تقدير (قوائم المورد أرخص)", "est": "تقدير"}
 rows = []
 for p in P:
@@ -23,6 +23,6 @@ for p in P:
                  "الوزن كجم": p["kg"], "الحجم": p["size"], "الشهادات": p["cert"], "الموسم": p["season"], "طلب أمريكي/شهر": p["us_units"] or "",
                  "رابط المورد": p["supplier_url"], "رابط الصورة": p["img"], "رابط المنافس": p["comp_url"], "مصدر الطلب": p["demand_url"], "مصدر التعليقات": p["review_url"],
                  "ثقة البيانات": {"verified": "موثّق", "partial": "جزئي", "estimate": "تقدير"}[p["conf"]]})
-with open(os.path.join(root, "data", "opportunities_1500.csv"), "w", encoding="utf-8-sig", newline="") as fh:
+with open(os.path.join(root, "data", "opportunities_v2.csv"), "w", encoding="utf-8-sig", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
 print("rows", len(rows))

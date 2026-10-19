@@ -152,6 +152,7 @@ def main():
     for p in prods:
         p["score"] = score(p)
     prods.sort(key=lambda p: -p["score"])
+    json.dump([{"en": p["en"], "price": p["price"]} for p in prods], open(os.path.join(work, "amz_candidates.json"), "w", encoding="utf-8"), ensure_ascii=False)
     print("pass 4x:", len(prods), "fail 4x:", len(fail4), "(verified cost fails:", sum(1 for p in fail4 if p["cost_src"] == "mic"), ")")
     top = prods[:N]
     for i, p in enumerate(top):
