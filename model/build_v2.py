@@ -5,7 +5,7 @@ plus round-1/2 research candidates (../out/*.json).
 Per product: supplier price (Made-in-China, data/mic_1500.json), Saudi competition and Saudi price/sales
 (Amazon.sa search, data/amz_comp.json), US demand (best-seller rank and ratings).
 Run:  python model/build_v2.py --prep     -> ../v2_candidates.json (input for mic_enrich.py and amz_comp.py)
-      python model/build_v2.py            -> data/products_v2.json + opportunities.html"""
+      python model/build_v2.py            -> data/products_v2.json (then model/build_main.py)"""
 import json, os, re, sys, glob, gzip, math, statistics
 from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -164,10 +164,7 @@ def main():
     A = dict(fx=FX, agent=0.08, ship=8.0, customs=0.05, vat=0.15, ads=0.08, ret=0.03, target=0.30, ok=0.20, qty=100, prep=2.0, samples=250, launch=600, certcost=1500, salesk=1.0)
     data = dict(assumptions=A, notice=notice, products=top)
     json.dump(data, open(os.path.join(root, "data", "products_v2.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
-    tpl = open(os.path.join(root, "model", "template_1500.html"), encoding="utf-8").read()
-    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    open(os.path.join(root, "opportunities.html"), "w", encoding="utf-8").write(tpl.replace("__DATA__", payload))
-    print("wrote opportunities.html")
+    print("wrote data/products_v2.json; run model/build_main.py to refresh the dashboard")
 
 
 if __name__ == "__main__":

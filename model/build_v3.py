@@ -207,10 +207,7 @@ def main():
     A = dict(fx=FX, agent=0.08, ship=8.0, customs=0.05, vat=0.15, ads=0.08, ret=0.03, target=0.30, ok=0.20, qty=100, prep=2.0, samples=250, launch=600, certcost=1500, salesk=1.0)
     data = dict(assumptions=A, notice=notice, products=top)
     json.dump(data, open(os.path.join(root, "data", "products_v3.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
-    tpl = open(os.path.join(root, "model", "template_1500.html"), encoding="utf-8").read()
-    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    open(os.path.join(root, "opportunities_100.html"), "w", encoding="utf-8").write(tpl.replace("__DATA__", payload))
-    print("wrote opportunities_100.html")
+    print("wrote data/products_v3.json; run model/build_main.py to refresh the dashboard")
 
 
 if __name__ == "__main__":
