@@ -217,10 +217,9 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   <header class="top">
     <div class="brand">
       <h1>Winning Products</h1>
-      <p>لوحة لاختيار المنتجات الرابحة للبيع على نون السعودية: تحسب الهامش من رسوم نون الرسمية وتكلفة المصنع، وتتحدّث النتائج فور تعديل الافتراضات.</p>
+      <p>لوحة لاختيار المنتجات الرابحة للبيع على نون السعودية، وفيها كل القوائم: القائمة الأولى (890)، والفرص المقاسة بسعر 50 إلى 200 ريال (711)، والفرص المقاسة بسعر 100 إلى 200 ريال (2000). تحسب الهامش من رسوم نون الرسمية وتكلفة المصنع، وتتحدّث النتائج فور تعديل الافتراضات.</p>
     </div>
     <div class="top-actions">
-      <a class="btn" href="index.html">⬅ الصفحة الرئيسية (كل القوائم)</a>
       <button class="btn" id="btn-export" type="button">⬇ تصدير CSV</button>
       <button class="btn" id="btn-theme" type="button" aria-label="تبديل الوضع">◐ تلقائي</button>
     </div>
@@ -232,7 +231,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   <div class="toolbar" id="toolbar">
     <div class="row">
       <label class="search"><span class="sr">بحث</span>
-        <input type="search" id="q" placeholder="ابحث بالاسم العربي أو الإنجليزي…" autocomplete="off">
+        <input type="search" id="q" placeholder="ابحث بالاسم أو المشكلة أو المنافس…" autocomplete="off">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       </label>
       <select id="cat" aria-label="الفئة"></select>
@@ -241,6 +240,8 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
         <option value="profit">الأعلى ربحًا للقطعة</option>
         <option value="roi">الأعلى عائدًا على التكلفة</option>
         <option value="us">الأعلى طلبًا في أمريكا</option>
+        <option value="comp">الأقل منافسة</option>
+        <option value="daily">الأعلى مبيعات يومية متوقعة</option>
         <option value="priceAsc">الأرخص سعر بيع</option>
         <option value="priceDesc">الأغلى سعر بيع</option>
         <option value="landed">الأقل تكلفة واصلة</option>
@@ -306,6 +307,8 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   const DATA = JSON.parse(document.getElementById('data').textContent);
   const P = DATA.products, DEFAULTS = DATA.assumptions;
   const $ = (s) => document.querySelector(s);
+  const safeUrl = (u) => (/^https?:\/\//i.test(String(u || '')) ? u : '');
+  const link = (u, t) => (safeUrl(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener">${t} ↗</a>` : '');
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const fm = (v, d = 2) => Number(v).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
   const f0 = (v) => Number(v).toLocaleString('en-US', { maximumFractionDigits: 0 });
@@ -329,7 +332,11 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
     ['small', () => 'صغير وخفيف', (p) => p.size === 'صغير'],
     ['fav', () => '★ المفضلة', (p) => favs.has(p.id)],
   ];
-  const SRC = [['', 'كل المصادر'], ['orig', 'قائمة نون الأصلية'], ['us', 'من أمازون أمريكا']];
+  const SRC = [['', 'كل القوائم'], ['v1', 'القائمة الأولى'], ['v2', 'مقاسة 50–200 ريال'], ['v3', 'مقاسة 100–200 ريال']];
+  const LISTS = { v1: 'القائمة الأولى', v2: 'مقاسة 50–200', v3: 'مقاسة 100–200' };
+  const C10 = { 'منخفضة': 3, 'متوسطة': 5, 'عالية': 8 };
+  const c10 = (p) => p.comp10 ?? C10[p.comp] ?? 6;
+  const compTxt = (p) => p.comp10 != null ? `${p.comp} (${p.comp10}/10)` : p.comp;
 
   // ---------- model ----------
   const eff = (p) => Object.assign({}, p, OV[p.id] || {});
@@ -365,17 +372,18 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   function visible() {
     const q = S.q.trim().toLowerCase();
     const act = CHIPS.filter(([k]) => S.quick.has(k));
-    return P.filter((p) => (!S.cat || p.cat === S.cat) && (!q || p.ar.includes(q) || p.en.includes(q) || p.cat.includes(q)) &&
+    return P.filter((p) => (!S.cat || p.cat === S.cat) && (!q || p.ar.includes(q) || p.en.toLowerCase().includes(q) || p.cat.includes(q) || (p.problem || '').includes(q) || (p.top_comp || '').toLowerCase().includes(q)) &&
       p.m.margin >= S.minM && p.price <= S.maxP &&
-      (!S.src || (S.src === 'us' ? p.us_units != null || p.id > 500 : p.id <= 500)) &&
+      (!S.src || p.list === S.src) &&
       act.every(([, , f]) => f(p)));
   }
   const SORTS = { margin: (a, b) => b.m.margin - a.m.margin, profit: (a, b) => b.m.profit - a.m.profit, roi: (a, b) => b.m.roi - a.m.roi,
     us: (a, b) => (b.us_units ?? -1) - (a.us_units ?? -1), priceAsc: (a, b) => a.price - b.price, priceDesc: (a, b) => b.price - a.price,
-    landed: (a, b) => a.m.landed - b.m.landed, id: (a, b) => a.id - b.id };
+    landed: (a, b) => a.m.landed - b.m.landed, id: (a, b) => a.id - b.id,
+    comp: (a, b) => c10(a) - c10(b) || b.m.margin - a.m.margin, daily: (a, b) => (b.daily ?? -1) - (a.daily ?? -1) };
   const TCOL = { name: (a, b) => a.ar.localeCompare(b.ar, 'ar'), cat: (a, b) => a.cat.localeCompare(b.cat, 'ar'), price: (a, b) => a.price - b.price, landed: (a, b) => a.m.landed - b.m.landed,
     profit: (a, b) => a.m.profit - b.m.profit, margin: (a, b) => a.m.margin - b.m.margin, us: (a, b) => (a.us_units ?? -1) - (b.us_units ?? -1),
-    comp: (a, b) => a.comp.localeCompare(b.comp, 'ar'), rating: (a, b) => a.m.margin - b.m.margin };
+    comp: (a, b) => c10(a) - c10(b), rating: (a, b) => a.m.margin - b.m.margin };
   let rows = [];
   function sorted(list) {
     if (S.view === 'table') return list.slice().sort((a, b) => TCOL[S.tcol](a, b) * S.tdir);
@@ -404,9 +412,9 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   // ---------- render: results ----------
   function pcard(p) {
     const m = p.m, c = mcls(m.margin);
-    const tags = [];
+    const tags = [`<span class="tag">${LISTS[p.list]}</span>`];
     if (p.us_units != null) tags.push(`<span class="tag i">🇺🇸 ≈${f0(p.us_units)}/شهر</span>`);
-    tags.push(`<span class="tag ${p.comp === 'منخفضة' ? 'g' : p.comp === 'عالية' ? 'b' : p.comp === 'متوسطة' ? 'w' : ''}">منافسة ${p.comp}</span>`);
+    tags.push(`<span class="tag ${p.comp === 'منخفضة' ? 'g' : p.comp === 'عالية' ? 'b' : p.comp === 'متوسطة' ? 'w' : ''}">منافسة ${compTxt(p)}</span>`);
     tags.push(p.cert === 'لا' ? '<span class="tag g">بدون شهادات</span>' : `<span class="tag w">${esc(p.cert.split(' + ')[0].replace('ملامس للغذاء (SFDA)', 'SFDA'))}</span>`);
     if (p.ps === 'est') tags.push('<span class="tag">سعر تقديري</span>');
     const w = Math.max(0, Math.min(1, m.margin / Math.max(A.target * 1.6, .01)));
@@ -430,13 +438,13 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
       <tbody>${part.map((p) => { const m = p.m, c = mcls(m.margin);
         return `<tr data-id="${p.id}" tabindex="0"><td><div class="thumb">${media(p)}</div></td><td><div class="pn">${esc(p.ar)}</div><div class="pe">${esc(p.en)}</div></td><td>${esc(p.cat)}</td>
         <td class="n">${f0(p.price)}</td><td class="n">${fm(m.landed)}</td><td class="n">${fm(m.profit)}</td><td class="n c-${c}"><b>${pct(m.margin, 1)}</b></td>
-        <td class="n">${p.us_units != null ? f0(p.us_units) : '—'}</td><td>${esc(p.comp)}</td><td><span class="rate ${RCLS[m.rating]}">${m.rating}</span></td></tr>`; }).join('')}</tbody></table></div>${more}`;
+        <td class="n">${p.us_units != null ? f0(p.us_units) : '—'}</td><td>${esc(compTxt(p))}</td><td><span class="rate ${RCLS[m.rating]}">${m.rating}</span></td></tr>`; }).join('')}</tbody></table></div>${more}`;
   }
   function drawLegend() { $('#legend').innerHTML = `الهدف <b class="num">${pct(A.target)}</b> · المقبول <b class="num">${pct(A.ok)}</b> · الدولار <b class="num">${A.fx}</b>`; }
 
   // ---------- render: toolbar ----------
   function drawChips() {
-    $('#chips').innerHTML = SRC.map(([k, l]) => `<button type="button" class="chip" data-src="${k}" aria-pressed="${S.src === k}">${l}</button>`).join('') +
+    $('#chips').innerHTML = SRC.map(([k, l]) => `<button type="button" class="chip" data-src="${k}" aria-pressed="${S.src === k}">${l} <span class="muted num">${f0(k ? P.filter((p) => p.list === k).length : P.length)}</span></button>`).join('') +
       '<span class="muted" style="align-self:center">|</span>' + CHIPS.map(([k, l, f]) => `<button type="button" class="chip" data-chip="${k}" aria-pressed="${S.quick.has(k)}">${l()} <span class="muted num">${f0(P.filter(f).length)}</span></button>`).join('');
     $('#s-margin-v').textContent = S.minM <= -1 ? 'الكل' : pct(S.minM); $('#s-price-v').textContent = S.maxP >= PMAX ? 'بلا حد' : S.maxP + ' ر.س';
     $('#v-cards').setAttribute('aria-pressed', S.view === 'cards'); $('#v-table').setAttribute('aria-pressed', S.view === 'table');
@@ -482,7 +490,11 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
     const legend = parts.map(([l, v, col]) => `<span><i style="background:${col}"></i>${l}<b class="num">${fm(v)}</b></span>`).join('');
     const us = p.us_units != null ? `<div class="box"><h3>🇺🇸 الطلب في أمريكا</h3><div class="meter" aria-hidden="true"><i style="width:${Math.min(100, p.us_units / 100)}%"></i></div>
         <p>≈ <b class="num">${f0(p.us_units)}</b> وحدة شهريًا لأعلى منتج مطابق (تقدير asinsight.com، وقد يكون لمنتج قريب).</p>${p.us_source ? `<a href="${esc(p.us_source)}" target="_blank" rel="noopener">مصدر التقدير ↗</a>` : ''}</div>` : '';
-    const sa = `<div class="box"><h3>🇸🇦 المنافسة في السعودية</h3><p>التقييم: <b>${esc(p.comp)}</b>${p.sa_check ? ` · بحث متاجر سعودية: ${p.sa_check === 'NONE' ? 'لم يظهر أي عرض' : 'عروض قليلة'}` : ''}</p>
+    const measured = p.list === 'v1' ? '' : `<div class="box"><h3>💡 المشكلة التي يحلها</h3><p>${esc(p.problem || '—')}</p></div>
+      ${p.improve ? `<div class="box" style="border-color:var(--warn)"><h3>🔧 تحسينات مقترحة</h3><p>${esc(p.improve)}</p>${link(p.review_url, 'مصدر التعليقات')}</div>` : ''}
+      <div class="box"><h3>📏 بيانات القياس</h3><dl class="kv"><dt>المضاعف (البيع ÷ الشراء)</dt><dd>${p.mult ?? '—'}×</dd><dt>المبيعات اليومية المتوقعة (نون + أمازون)</dt><dd>${p.daily ?? '—'} قطعة</dd>${p.bundle ? `<dt>يباع كطقم</dt><dd>${p.bundle} قطع</dd>` : ''}</dl>
+        <p><b>أكبر منافس:</b> ${esc(p.top_comp || '—')}</p><p><b>البدائل الأرخص:</b> ${esc(p.subs || '—')}</p>${p.comp_ev ? `<p class="muted" style="font-size:12.5px">${esc(p.comp_ev)}</p>` : ''}${link(p.comp_url, 'رابط المنافس')} ${link(p.supplier_url, 'رابط المورد')}</div>`;
+    const sa = `<div class="box"><h3>🇸🇦 المنافسة في السعودية</h3><p>التقييم: <b>${esc(compTxt(p))}</b>${p.sa_check ? ` · بحث متاجر سعودية: ${p.sa_check === 'NONE' ? 'لم يظهر أي عرض' : 'عروض قليلة'}` : ''}</p>
         ${p.sa_evidence ? `<p class="muted" style="font-size:12.5px">${esc(p.sa_evidence)}</p>` : ''}${p.ps === 'real' ? `<p class="muted" style="font-size:12.5px">نطاق أسعار المنافسين على نون: ${esc(p.rng || '—')} · نتائج: ${esc(p.results || '—')}</p>` : ''}
         <p class="muted" style="font-size:12px">${p.us_units != null ? 'التقييم من بحث عام في متاجر سعودية وليس نون، فتحقق على نون قبل الطلب.' : ''}</p></div>`;
     const kw = encodeURIComponent(p.en), kwu = kw.replace(/%20/g, '_');
@@ -491,7 +503,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
     $('#dbody').innerHTML = `
       <div class="dhero">${media(p, true)}${p.img ? '<small>صورة تقريبية من مورّد</small>' : ''}</div>
       <div class="dtitle"><h2>${esc(p.ar)}</h2><div class="en">${esc(p.en)}</div></div>
-      <div class="row"><span class="rate ${RCLS[m.rating]}">${m.rating}</span><span class="tag">${EMO[p.cat] || ''} ${esc(p.cat)}</span><span class="tag">${esc(p.season)}</span><span class="tag">${esc(p.size)} · ${p.kg} كجم</span>
+      <div class="row"><span class="rate ${RCLS[m.rating]}">${m.rating}</span><span class="tag i">${LISTS[p.list]}</span><span class="tag">${EMO[p.cat] || ''} ${esc(p.cat)}</span><span class="tag">${esc(p.season)}</span><span class="tag">${esc(p.size)} · ${p.kg} كجم</span>
         <button type="button" class="btn sm" data-fav="${p.id}" aria-pressed="${favs.has(p.id)}" style="margin-inline-start:auto">${favs.has(p.id) ? '★ في المفضلة' : '☆ أضف للمفضلة'}</button></div>
       <div class="box"><div class="bigm"><span class="v num c-${c}">${pct(m.margin, 1)}</span><span class="muted">هامش الربح</span><span class="muted" style="margin-inline-start:auto">ربح القطعة <b class="num" style="color:var(--fg)">${fm(m.profit)}</b> ر.س</span></div>
         <div class="stack" role="img" aria-label="توزيع سعر البيع">${stack}</div><div class="legend">${legend}</div>
@@ -501,7 +513,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
         <label>تكلفة المصنع ($)<input type="number" inputmode="decimal" step="0.1" id="ov-usd" value="${ov.usd ?? p.usd}"></label></div>
         <div class="row"><span class="muted" style="font-size:12.5px">${m.minPrice == null ? '' : `أقل سعر بيع يحقق الهدف: <b class="num">${f0(m.minPrice)}</b> ر.س · `}العائد على التكلفة <b class="num">${pct(m.roi)}</b> · رأس مال ${A.qty} قطعة <b class="num">${f0(m.capital)}</b> ر.س</span>
         ${ov.price != null || ov.usd != null ? '<button type="button" class="btn sm" id="ov-reset">إلغاء التعديل</button>' : ''}</div></div>
-      ${us}${sa}
+      ${measured}${us}${sa}
       <div class="box"><h3>📋 تفاصيل التكلفة (ريال للقطعة)</h3><dl class="kv">
         <dt>سعر البيع (شامل الضريبة)</dt><dd>${fm(m.price)}</dd><dt>ضريبة القيمة المضافة</dt><dd>−${fm(m.vat)}</dd><dt>عمولة نون (${pct(p.pct, 1)})</dt><dd>−${fm(m.com)}</dd><dt>رسوم FBN</dt><dd>−${fm(m.fbn)}</dd>
         <dt>الإعلانات</dt><dd>−${fm(m.ads)}</dd><dt>المرتجعات والتالف</dt><dd>−${fm(m.ret)}</dd><dt>المصنع ($${m.usd}${p.cs === 'est' ? '، تقدير' : ''}) + وكيل الشراء</dt><dd>−${fm(m.factory)}</dd>
@@ -573,7 +585,7 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
     if (e.key === 'Escape') close(); else if (e.target.tagName !== 'INPUT') { if (e.key === 'ArrowLeft') step(1); else if (e.key === 'ArrowRight') step(-1); } });
   addEventListener('resize', () => { drawCharts(); });
   $('#btn-export').addEventListener('click', () => {
-    const list = sorted(rows), cols = [['id', '#'], ['ar', 'المنتج'], ['en', 'كلمة البحث'], ['cat', 'الفئة'], ['price', 'سعر نون'], ['usd', 'تكلفة المصنع $'], ['kg', 'الوزن'], ['comp', 'المنافسة'], ['cert', 'الشهادات'], ['us_units', 'طلب أمريكي/شهر']];
+    const list = sorted(rows), cols = [['id', '#'], ['ar', 'المنتج'], ['en', 'كلمة البحث'], ['list', 'القائمة'], ['cat', 'الفئة'], ['price', 'سعر نون'], ['usd', 'تكلفة المصنع $'], ['kg', 'الوزن'], ['comp', 'المنافسة'], ['cert', 'الشهادات'], ['us_units', 'طلب أمريكي/شهر'], ['comp10', 'المنافسة من 10'], ['daily', 'بيع يومي متوقع'], ['problem', 'المشكلة'], ['top_comp', 'أكبر منافس']];
     const extra = [['landed', 'التكلفة الواصلة'], ['profit', 'الربح'], ['margin', 'الهامش'], ['rating', 'التقييم']], q = (v) => '"' + String(v ?? '').replace(/"/g, '""') + '"';
     const lines = [[...cols, ...extra].map(([, l]) => q(l)).join(',')];
     list.forEach((p) => lines.push([...cols.map(([k]) => q(p[k])), ...extra.map(([k]) => q(typeof p.m[k] === 'number' ? Math.round(p.m[k] * 1000) / 1000 : p.m[k]))].join(',')));
@@ -587,9 +599,10 @@ footer { color: var(--muted); font-size: 12px; padding-block: 26px 40px; }
   $('#notice-x').addEventListener('click', () => { $('#notice').hidden = true; store.set('hideNotice', DATA.notice.length); });
 
   // ---------- init ----------
+  { const h = location.hash.slice(1); if (LISTS[h]) S.src = h; }
   $('#cat').innerHTML = '<option value="">كل الفئات</option>' + CATS.map((c) => `<option value="${esc(c)}">${EMO[c] || ''} ${esc(c)}</option>`).join('');
   $('#notice-text').textContent = DATA.notice; if (store.get('hideNotice', 0) === DATA.notice.length) $('#notice').hidden = true;
-  $('#foot').innerHTML = 'المصادر: جدول رسوم نون الرسمي للسعودية (ساري من 1 سبتمبر 2025)، وأسعار بحث noon.com/saudi-en، وقوائم موردين عامة في Made-in-China.com، وتقديرات الطلب الأمريكي من asinsight.com. صور المنتجات من قوائم موردين لمنتجات مشابهة وللتعريف فقط. اطلب عروض أسعار وعينات قبل أي طلب.';
+  $('#foot').innerHTML = 'المصادر: جدول رسوم نون الرسمي للسعودية (ساري من 1 سبتمبر 2025)، وأسعار بحث noon.com/saudi-en، وبحث أمازون السعودية الفعلي للقوائم المقاسة، وقوائم موردين عامة في Made-in-China.com، وتقديرات الطلب الأمريكي من asinsight.com. صور المنتجات من قوائم موردين لمنتجات مشابهة وللتعريف فقط. اطلب عروض أسعار وعينات قبل أي طلب.';
   $('#s-price').max = PMAX; $('#s-price').value = PMAX; applyTheme(); buildAssume(); refresh();
 })();
 </script>
