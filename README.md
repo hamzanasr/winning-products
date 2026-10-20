@@ -69,7 +69,7 @@ Open `index.html` in a browser. It is self-contained (no libraries, no network).
 
 | الملف | الوصف |
 |---|---|
-| `opportunities.html` | لوحة الفرص المقاسة |
+| `index.html#v2` | لوحة الفرص المقاسة |
 | `data/products_v2.json` و`data/opportunities_v2.csv` | البيانات |
 | `model/bs_crawl.py` | سحب قوائم الأكثر مبيعًا (أمازون أمريكا والسعودية) |
 | `model/amz_comp.py` | قياس المنافسة الفعلية من أمازون السعودية |
@@ -79,7 +79,22 @@ Open `index.html` in a browser. It is self-contained (no libraries, no network).
 | `data/amz_comp.json` و`data/mic_1500.json` | نتائج القياس |
 | `data/products_1500.json` | القائمة القديمة (للرجوع فقط) |
 
-## فرص 100 إلى 200 ريال / Opportunities 100–200 SAR (`opportunities_100.html`)
+## الصفحة الرئيسية / Main page (`index.html`)
+
+الصفحة الرئيسية تجمع كل القوائم، وعددها 3,601 منتج. القائمة المنسدلة «القائمة» تعرضها مجتمعة أو كل قائمة وحدها، ولكل قائمة رابط مباشر:
+
+| القائمة | العدد | الرابط |
+|---|---|---|
+| القائمة الأولى | 890 | `index.html#v1` |
+| فرص مقاسة 50–200 ريال | 711 | `index.html#v2` |
+| فرص مقاسة 100–200 ريال | 2000 | `index.html#v3` |
+
+- **القائمة الأولى:** أغلب منافستها تقديرية وتظهر بعبارة «(تقدير)»، والمنتجات التي لم تُفحص منافستها تأخذ 6 من 10.
+- **البناء:** `python model/build_main.py`.
+- **الروابط القديمة:** `opportunities.html` و`opportunities_100.html` تحولان للصفحة الرئيسية.
+- **صفحة الـ890 القديمة:** محفوظة في `original_890.html`.
+
+## فرص 100 إلى 200 ريال / Opportunities 100–200 SAR
 
 قائمة جديدة فيها **2000 منتج إضافي**، غير مكررة مع الـ890 الأصلية ولا مع قائمة الـ711. تطبق نفس الشروط، لكن سعر البيع لا يقل عن 100 ريال.
 
@@ -100,7 +115,7 @@ Open `index.html` in a browser. It is self-contained (no libraries, no network).
 
 | الملف | الوصف |
 |---|---|
-| `opportunities_100.html` | لوحة الـ2000 |
+| `index.html#v3` | لوحة الـ2000 |
 | `data/products_v3.json` و`data/opportunities_v3.csv` | البيانات |
 | `model/build_v3.py` | البناء (`--prep` لتجهيز المرشحين) |
 | `model/make_queue.py` و`data/browser_queue*.json` | قوائم القياس |
@@ -110,7 +125,8 @@ Open `index.html` in a browser. It is self-contained (no libraries, no network).
 
 | الملف | الوصف |
 |---|---|
-| `index.html` | اللوحة التفاعلية |
+| `index.html` | الصفحة الرئيسية: كل القوائم (3,601 منتج) |
+| `original_890.html` | لوحة القائمة الأولى القديمة |
 | `data/products.json` | بيانات المنتجات والافتراضات (يتضمن حقل `img` لرابط الصورة) |
 | `data/images.json` | رابط صورة كل منتج وعنوان القائمة التي أُخذت منها ودرجة التطابق |
 | `model/template.html` | قالب اللوحة. عدّله ثم شغّل `python model/build_dashboard.py` لتوليد `index.html` |

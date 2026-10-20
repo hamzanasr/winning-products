@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Builds index.html from model/template.html and data/products.json.
+"""Builds original_890.html (the old single-list page; the main page is model/build_main.py) from model/template.html and data/products.json.
 Run from the repo root:  python model/build_dashboard.py
 Images: data/images.json maps product id -> {"img": url}; they are copied into each product as "img"."""
 import json, os, sys
@@ -21,5 +21,5 @@ for p in d["products"]:
 json.dump(d, open(data_path, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
 tpl = open(os.path.join(root, "model", "template.html"), encoding="utf-8").read()
 payload = json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-open(os.path.join(root, "index.html"), "w", encoding="utf-8").write(tpl.replace("__DATA__", payload))
+open(os.path.join(root, "original_890.html"), "w", encoding="utf-8").write(tpl.replace("__DATA__", payload))
 print("products:", len(d["products"]), "with image:", sum(1 for p in d["products"] if p.get("img")))
