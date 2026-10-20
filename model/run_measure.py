@@ -4,7 +4,7 @@ Each cycle: refresh candidates (build_v3 --prep) -> supplier evidence -> Amazon.
 (1 thread, polite delay) -> build_v3. Repeats every 10 minutes to pick up new idea files."""
 import os, subprocess, sys, time, datetime
 here = os.path.dirname(os.path.abspath(__file__)); repo = os.path.dirname(here); work = os.path.dirname(repo)
-env = dict(os.environ, PYTHONIOENCODING="utf8", AMZ_THREADS="2", AMZ_DELAY="2.5")
+env = dict(os.environ, PYTHONIOENCODING="utf8", AMZ_THREADS="1", AMZ_DELAY="3")
 log = open(os.path.join(work, "run_measure.log"), "a", encoding="utf-8")
 def run(args, timeout):
     try:
@@ -20,4 +20,6 @@ while True:
     out += run(["model/build_v3.py"], 900)
     log.write(t + " | " + " | ".join(out) + "\n"); log.flush()
     time.sleep(600)
+
+
 

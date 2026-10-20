@@ -34,7 +34,8 @@ def fetch(kw):
             if "s-search-result" in h or "No results for" in h:
                 open(path, "w", encoding="utf-8").write(h)
                 return h
-            time.sleep(8 * (i + 1) + random.random() * 4)   # captcha / throttled
+            # a tiny page means Amazon is blocking this IP for a while: pause long, then retry
+            time.sleep((300 if len(h) < 5000 else 8 * (i + 1)) + random.random() * 20)
         except Exception:
             time.sleep(5 * (i + 1))
     return None
