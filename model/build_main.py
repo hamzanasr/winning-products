@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Builds the single dashboard (index.html and original_890.html, same content) from model/template.html:
+"""Builds the single dashboard index.html from model/template.html:
   v1 = data/products.json     (the original 890, mostly estimated)
   v2 = data/products_v2.json  (711 measured, 50-200 SAR)
   v3 = data/products_v3.json  (2000 measured, 100-200 SAR)
@@ -48,6 +48,6 @@ notice = ("هذه الصفحة تجمع كل القوائم (3,601 منتج). ا
 data = dict(assumptions=v1["assumptions"], notice=notice, products=P)
 tpl = open(os.path.join(root, "model", "template.html"), encoding="utf-8").read()
 html = tpl.replace("__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
-for out in ("index.html", "original_890.html"):
+for out in ("index.html",):
     open(os.path.join(root, out), "w", encoding="utf-8").write(html)
 print("products:", len(P), {k: sum(1 for p in P if p["list"] == k) for k in ("v1", "v2", "v3")})

@@ -5,7 +5,7 @@ plus round-1/2 research candidates (../out/*.json).
 Per product: supplier price (Made-in-China, data/mic_1500.json), Saudi competition and Saudi price/sales
 (Amazon.sa search, data/amz_comp.json), US demand (best-seller rank and ratings).
 Run:  python model/build_v2.py --prep     -> ../v2_candidates.json (input for mic_enrich.py and amz_comp.py)
-      python model/build_v2.py            -> data/products_v2.json + opportunities.html"""
+      python model/build_v2.py            -> data/products_v2.json"""
 import json, os, re, sys, glob, gzip, math, statistics
 from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
