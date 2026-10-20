@@ -12,6 +12,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fees import commission_rate, fbn_fee
 from build_1500 import CATS, AMZ, BANNED, toks, jacc, pack_count, listing_is_pack
 
+# medical / personal care / weapons / veterinary injection gear that slipped past BANNED
+V3_BANNED = re.compile(r"\b(syringe|drench|respirator|n95|cpr|choking|speargun|rifle|hair|oximeter|pulse|stethoscope|first aid|bandage|tourniquet|headgear|snow chains)\b", re.I)
+
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 work = os.path.dirname(root)
 FX = 3.75
@@ -51,12 +54,18 @@ def load_candidates():
                           asin=None, us_price=None, us_ratings=int(x.get("us_monthly_units") or 0) and 0, us_rank=None, us_stars=None, us_path="", us_title="", us_img="",
                           agent_usd=float(x["buy_usd"]) if x.get("buy_usd") else None, agent_sell=x.get("sell_sar"),
                           improve=x.get("improvement", ""), review_url=x.get("review_url", "")))
+    ar_fix_p = os.path.join(root, "data", "ar_fix_v3.json")
+    if os.path.exists(ar_fix_p):
+        ar_fix = json.load(open(ar_fix_p, encoding="utf-8"))
+        for c in C:
+            if c["en"] in ar_fix:
+                c["ar"] = ar_fix[c["en"]]
     existing = [toks(l) for l in open(os.path.join(work, "existing", "ALL.txt"), encoding="utf-8").read().splitlines() if l.strip()]
     existing += [toks(p["en"]) for p in json.load(open(os.path.join(root, "data", "products_v2.json"), encoding="utf-8"))["products"]]
     C.sort(key=lambda c: -(c["us_ratings"] or 0))            # keep the best-documented version of duplicates
     keep, seen = [], []
     for c in C:
-        if c["kg"] > 3 or BANNED.search(c["en"]):
+        if c["kg"] > 3 or BANNED.search(c["en"]) or V3_BANNED.search(c["en"]):
             continue
         t = toks(c["en"])
         if not t or any(jacc(t, e) >= 0.75 for e in existing) or any(jacc(t, s) >= 0.75 for s in seen):
