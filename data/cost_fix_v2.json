@@ -1,0 +1,812 @@
+{
+"cupcake boxes with window": {
+"usd": 2.2,
+"verdict": "fixed",
+"why": "About 20 window boxes per pack at roughly 0.11 each plus packing."
+},
+"balcony privacy screen 0.9x5m with cable ties": {
+"usd": 5.0,
+"verdict": "ok",
+"why": "HDPE mesh 0.9x5m with ties is genuinely about this cost."
+},
+"hand leaf rakes scoops": {
+"usd": 4.6,
+"verdict": "fixed",
+"why": "Two pairs of scoops at about 2.3 per pair."
+},
+"gold silver bronze award medals": {
+"usd": 1.6,
+"verdict": "fixed",
+"why": "Set of three medals with ribbons at roughly 0.5 each."
+},
+"pinch grip block loading": {
+"usd": 5.0,
+"verdict": "estimated",
+"why": "No matching listing; molded grip block with hardware, my estimate."
+},
+"padel racket wall mount with ball storage": {
+"usd": 4.0,
+"verdict": "estimated",
+"why": "Steel or ABS wall rack with ball basket; no listing match."
+},
+"sepak takraw ball": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Synthetic woven takraw ball; no listing, typical factory price."
+},
+"aluminum foil insulated ground mat 2x2m": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "4 square metres of foil XPE foam at about 1.3 per square metre."
+},
+"unfinished wooden ornaments for painting": {
+"usd": 1.6,
+"verdict": "fixed",
+"why": "Two blank wood sets at about 0.8 each."
+},
+"manual rotary egg beater": {
+"usd": 0.75,
+"verdict": "ok",
+"why": "Stainless rotary beaters cost 0.45 to 1.8, so cost is right."
+},
+"hexagon agility rings": {
+"usd": 2.5,
+"verdict": "estimated",
+"why": "Six hex rings with clips and bag; listings unclear on set size."
+},
+"stackable t-shirt folding trays 10 pcs": {
+"usd": 5.0,
+"verdict": "estimated",
+"why": "Ten plastic folding boards at about 0.5 each."
+},
+"leather quran cover zipper case": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "PU leather zip Quran case; no listing, leaning higher."
+},
+"DIY kite making kit for kids": {
+"usd": 5.5,
+"verdict": "fixed",
+"why": "Kit of six kites at about 0.9 each plus pens and packaging."
+},
+"electronic talking alphabet wall chart": {
+"usd": 2.89,
+"verdict": "ok",
+"why": "Listing matches talking chart exactly at 2.89."
+},
+"spiral duvet blanket drying hanger": {
+"usd": 3.0,
+"verdict": "ok",
+"why": "Stainless spiral hanger, likely a two-piece set, fits this cost."
+},
+"camping dish drying rack hanging net": {
+"usd": 2.5,
+"verdict": "ok",
+"why": "Foldable mesh drying rack matches listing at 2.5."
+},
+"stainless thobe collar stays 40pc": {
+"usd": 1.6,
+"verdict": "ok",
+"why": "Forty stainless stays plus box genuinely cost about this."
+},
+"agility hurdles set adjustable": {
+"usd": 4.5,
+"verdict": "ok",
+"why": "Six adjustable hurdles at 0.7 to 1.6 each fits."
+},
+"swimming webbed gloves 2 pairs": {
+"usd": 4.0,
+"verdict": "estimated",
+"why": "Two pairs; listing is silicone 2.71 per pair, neoprene cheaper."
+},
+"student desk privacy shield folders": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "Pack of about ten folding desk shields; listing price is not per unit."
+},
+"prayer mat and quran wall holder": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "Fabric or wood wall holder; listing is a different product."
+},
+"carbon steel round griddle tawa": {
+"usd": 3.45,
+"verdict": "ok",
+"why": "Carbon steel griddle at 1.8 to 4.5 with handle fits."
+},
+"coffee bean storage bags one way valve 20 pack": {
+"usd": 3.6,
+"verdict": "fixed",
+"why": "Twenty valve bags at about 0.18 each."
+},
+"bouldering brush climbing 2 pack": {
+"usd": 5.0,
+"verdict": "fixed",
+"why": "Two brushes at 2.5 each per listing."
+},
+"tabletop water fountain": {
+"usd": 8.0,
+"verdict": "estimated",
+"why": "Resin fountain with small pump costs 7 to 10 per listings."
+},
+"tennis padel ball waist clip holder 2-pack": {
+"usd": 1.2,
+"verdict": "ok",
+"why": "Two plastic clips at about 0.6 each."
+},
+"korean ramen pot with lid": {
+"usd": 3.6,
+"verdict": "estimated",
+"why": "Stainless or aluminum pot with lid; listings range 2.9 to 3.8."
+},
+"sensory bin tools set tongs scoops": {
+"usd": 3.0,
+"verdict": "ok",
+"why": "Set of plastic tongs, scoops and funnel fits this cost."
+},
+"LED finger lights party": {
+"usd": 1.8,
+"verdict": "estimated",
+"why": "Pack of about twelve LED rings with coin cells."
+},
+"ballet foot stretcher arch enhancer": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "Foam and elastic stretcher; listing prices are retail, no factory match."
+},
+"plant frost cover bags": {
+"usd": 2.2,
+"verdict": "fixed",
+"why": "Three non-woven cover bags at about 0.6 plus packing."
+},
+"foldable foam hiking sit pad": {
+"usd": 1.5,
+"verdict": "ok",
+"why": "Listings 0.55; 1.5 already includes packaging and margin."
+},
+"mochi squishy toys set": {
+"usd": 1.5,
+"verdict": "fixed",
+"why": "About ten mochi pieces at 0.15 each per unit."
+},
+"small animal hay feeder rack": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Plastic cage-mount hay rack; listing 4.2 is high, my estimate."
+},
+"toilet seat bumpers pads": {
+"usd": 0.93,
+"verdict": "ok",
+"why": "Pack of ten silicone bumpers at about 0.09 each."
+},
+"kids award medals set": {
+"usd": 1.5,
+"verdict": "estimated",
+"why": "Ten plastic medals with ribbon at about 0.15 each."
+},
+"power outage alarm plug-in UK": {
+"usd": null,
+"verdict": "reject",
+"why": "Mains-powered UK plug alarm needs electrical approvals; skip."
+},
+"child safety plug lockout box for TV & appliances": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Plastic lockable plug cover box; no listing match."
+},
+"manual laundry plunger washer": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Plastic plunger washer plus bag; no listing, typical price."
+},
+"meat marinade container with lid and grid 3L": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "3L PP container with lid and grid; no listing, leaning higher."
+},
+"camp chair cup holder clip": {
+"usd": 2.0,
+"verdict": "fixed",
+"why": "Clip-on cup holder matches listing at 2.0."
+},
+"zinc alloy cabinet knobs": {
+"usd": 2.4,
+"verdict": "fixed",
+"why": "Six zinc knobs at about 0.35 each with screws."
+},
+"tennis padel ball pickup tube with shoulder strap": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Plastic pickup tube with strap; no listing, typical price."
+},
+"unfinished wooden picture frames": {
+"usd": 2.4,
+"verdict": "fixed",
+"why": "Set of three unfinished pine frames at about 0.8 each."
+},
+"plant air layering propagation kit": {
+"usd": 1.8,
+"verdict": "fixed",
+"why": "Six reusable rooting balls at 0.25 plus ties and packing."
+},
+"preserved rose gift box": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Listings price only boxes; rose, dome and box total estimated."
+},
+"foldable magnetic soccer tactics board": {
+"usd": 3.5,
+"verdict": "ok",
+"why": "Listings 2.88 to 3.7 match the foldable board."
+},
+"clear protective film for marble countertops": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Clear PET/TPU film roll; no listing match, leaning higher."
+},
+"light bulb changer heads kit (fits extension pole)": {
+"usd": 3.5,
+"verdict": "ok",
+"why": "Bulb changer heads only, without pole; cost plausible."
+},
+"push fit pipe coupling": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Two brass push-fit couplings; listing prices vary widely."
+},
+"gold round vinyl placemats": {
+"usd": 1.4,
+"verdict": "fixed",
+"why": "Set of four round vinyl mats at about 0.3 each."
+},
+"manual cardamom grinder hand crank large hopper": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "Cast metal hand-crank grinder; no listing match, estimate."
+},
+"plastic condiment squeeze bottle": {
+"usd": 0.7,
+"verdict": "fixed",
+"why": "Pack of four squeeze bottles at about 0.15 each."
+},
+"robotic swimming fish toy": {
+"usd": 1.6,
+"verdict": "ok",
+"why": "Three listings all show 1.6 for the same fish toy."
+},
+"gas spring lift support strut with brackets": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Pair of small gas struts plus brackets; listing struts are bigger."
+},
+"plush stick horse toy": {
+"usd": 4.5,
+"verdict": "ok",
+"why": "Listing shows 4.5 for plush stick horse."
+},
+"soft sports balls set for kids with pump": {
+"usd": 3.2,
+"verdict": "estimated",
+"why": "Five soft balls plus mini pump; listing prices per ball."
+},
+"wind up swimming turtles bath toy": {
+"usd": 1.8,
+"verdict": "fixed",
+"why": "Set of four wind-up turtles at about 0.45 each."
+},
+"el wire neon glow": {
+"usd": 2.29,
+"verdict": "ok",
+"why": "EL wire with inverter fits listings 1.35 to 3.6."
+},
+"toddler educational learning posters": {
+"usd": 1.8,
+"verdict": "fixed",
+"why": "Eight laminated posters at about 0.2 each plus packing."
+},
+"vertical cable spine for standing desk": {
+"usd": 4.5,
+"verdict": "ok",
+"why": "Listing 4.2 for vertical cable channel matches."
+},
+"anti-fog film for bathroom mirror": {
+"usd": null,
+"verdict": "reject",
+"why": "Listings are mains heated defoggers, not cheap film; unclear and electrical."
+},
+"ankle skip ball toy with flash wheel": {
+"usd": 1.17,
+"verdict": "ok",
+"why": "LED ankle skip ball listing is 0.96 to 1.39."
+},
+"kids sewing kit stuffed animals": {
+"usd": 0.55,
+"verdict": "ok",
+"why": "Three listings all show 0.55 for the felt sewing kit."
+},
+"light up magic wand set": {
+"usd": 2.6,
+"verdict": "estimated",
+"why": "4 light-up wands plus packaging; listing is a different set"
+},
+"ps vr2 lens protector cover": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Listing is retail-priced; silicone lens covers cost less at factory"
+},
+"waterproof tarp with grommets 3x4m": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "12 sqm PE tarp with grommets, no matching listing"
+},
+"non slip rug pad 120x180": {
+"usd": 4.4,
+"verdict": "fixed",
+"why": "About 2.16 sqm of dotted non-woven underlay at listing rate"
+},
+"mini chalkboard food signs": {
+"usd": 2.4,
+"verdict": "estimated",
+"why": "12 mini wooden chalkboard signs at about 0.2 each"
+},
+"LED traffic wand baton": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Cheap LED baton with AAA cells; listing is rechargeable"
+},
+"PEX brass crimp fittings set": {
+"usd": 14.0,
+"verdict": "estimated",
+"why": "30 brass PEX fittings at roughly 0.45 each"
+},
+"non woven gift bags with handles": {
+"usd": 1.8,
+"verdict": "estimated",
+"why": "Pack of 12 non-woven bags at about 0.15 each"
+},
+"heat resistant ironing mat foldable": {
+"usd": 2.2,
+"verdict": "estimated",
+"why": "Listing is a silicone pad; foldable 100x65cm ironing mat costs more"
+},
+"sanding sponge blocks assortment": {
+"usd": 3.0,
+"verdict": "fixed",
+"why": "12 sanding sponges at 0.25 each"
+},
+"plastic squeeze sauce bottles": {
+"usd": 0.75,
+"verdict": "fixed",
+"why": "Pack of 3 squeeze bottles at 0.25 each"
+},
+"blank ceramic coasters with cork": {
+"usd": 7.5,
+"verdict": "fixed",
+"why": "24 blank coasters at about 0.3 each plus packing"
+},
+"stackable foldable closet storage basket": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Single foldable fabric basket, listing range 2-5"
+},
+"tree watering bag slow release": {
+"usd": 3.47,
+"verdict": "ok",
+"why": "Listing for 75L slow-release bag matches current cost"
+},
+"LED poi balls set": {
+"usd": 3.6,
+"verdict": "fixed",
+"why": "Pair of LED poi balls at 1.79 each"
+},
+"scissor car jack with lug wrench": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "Listing is only the wrench; add a 2-ton scissor jack"
+},
+"stainless butter spreader knife set": {
+"usd": 2.0,
+"verdict": "estimated",
+"why": "Set of 3 stainless spreaders, one listing matches loosely"
+},
+"metal chain phone wrist strap": {
+"usd": 1.2,
+"verdict": "fixed",
+"why": "Metal chain strap matches listing price range"
+},
+"felt bulletin board with adhesive tabs": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Self-adhesive felt tile set, listings unclear on piece count"
+},
+"automatic toothpick dispenser": {
+"usd": 0.9,
+"verdict": "estimated",
+"why": "Plastic press-type dispenser, lean higher than current"
+},
+"closet rack size dividers": {
+"usd": 2.2,
+"verdict": "fixed",
+"why": "Pack of 12 size dividers at 0.18 each"
+},
+"scrapbook sticker book": {
+"usd": 1.1,
+"verdict": "estimated",
+"why": "Printed sticker book with several sheets, cheap print run"
+},
+"clear plant saucers set": {
+"usd": 2.7,
+"verdict": "fixed",
+"why": "Set of 30 saucers at about 0.09 each"
+},
+"decorative toilet bolt covers": {
+"usd": 1.5,
+"verdict": "ok",
+"why": "Stainless cover set at listing price is right"
+},
+"kids detective spy kit": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Kit with magnifier, fingerprint set, pouch; listings partial"
+},
+"artificial bonsai tree ceramic pot": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Small faux bonsai in ceramic pot, plastic-pot listing too cheap"
+},
+"boho rattan wall basket decor": {
+"usd": 12.0,
+"verdict": "estimated",
+"why": "7 small rattan baskets at about 1.7 each, thin margin"
+},
+"greeting card storage box": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Divided card box; listings are plain paper boxes"
+},
+"chest expander 5 springs adjustable": {
+"usd": 3.82,
+"verdict": "ok",
+"why": "Listing for 5-spring expander matches current cost"
+},
+"organza chair sash bows": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "Pack of about 50 organza sashes at 0.12 each"
+},
+"reusable nonstick toaster bags": {
+"usd": 3.84,
+"verdict": "fixed",
+"why": "Set of 12 PTFE bags at 0.32 each"
+},
+"aquarium shrimp feeding tube dish": {
+"usd": 2.8,
+"verdict": "estimated",
+"why": "Glass tube plus two trays; listing covers one tube"
+},
+"soccer training disc cones set": {
+"usd": 5.0,
+"verdict": "fixed",
+"why": "Pack of 50 cones with bag per 50-pack listing"
+},
+"clip on dustpan rubber lip": {
+"usd": 1.8,
+"verdict": "fixed",
+"why": "Dustpan with brush set per listing"
+},
+"sticky peel off dust mat 30 sheets": {
+"usd": 6.0,
+"verdict": "fixed",
+"why": "Peel-off mat of 30 layers per cleanroom mat listing"
+},
+"ventilated football boot bag": {
+"usd": 2.0,
+"verdict": "ok",
+"why": "Boot bag at listing level is genuinely cheap"
+},
+"winch line dampener": {
+"usd": 4.0,
+"verdict": "estimated",
+"why": "Weighted dampener bag with cable sleeve, no listing"
+},
+"cast iron campfire pie iron sandwich maker": {
+"usd": 4.6,
+"verdict": "ok",
+"why": "Cast iron pie iron listings match current cost"
+},
+"cricket tape tennis balls 6 pack": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Six taped tennis balls at about 0.45 each plus pack"
+},
+"door hinge pin removal tool": {
+"usd": 1.5,
+"verdict": "ok",
+"why": "Two-piece pin punch set is cheap, no matching listing"
+},
+"gold napkin rings set": {
+"usd": 1.4,
+"verdict": "fixed",
+"why": "Set of 6 rings at about 0.22 each"
+},
+"insulated cotton tea cozy": {
+"usd": 1.9,
+"verdict": "ok",
+"why": "Padded cotton tea cozy at this price is plausible"
+},
+"galvanized beverage tub": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "Large galvanized oval tub, listings are smaller buckets"
+},
+"drywall anchors screws assortment kit": {
+"usd": 1.6,
+"verdict": "estimated",
+"why": "Roughly 200-piece anchor and screw assortment in a box"
+},
+"coconut opener tool set": {
+"usd": 1.9,
+"verdict": "fixed",
+"why": "Two openers at 0.65 plus straws and brush"
+},
+"skateboard wall display holder": {
+"usd": 3.5,
+"verdict": "estimated",
+"why": "Metal or ABS wall hanger pair; listings are acrylic or unrelated"
+},
+"VR golf club attachment": {
+"usd": 5.0,
+"verdict": "estimated",
+"why": "Plastic club shaft with Quest adapter; listings unrelated"
+},
+"felt wall tile bulletin board": {
+"usd": 3.6,
+"verdict": "estimated",
+"why": "Set of 6 felt wall tiles at roughly 0.6 each"
+},
+"padded camping gas stove carry case": {
+"usd": 3.5,
+"verdict": "ok",
+"why": "Padded zip carry case at this price is plausible"
+},
+"diversion can safe": {
+"usd": 2.8,
+"verdict": "estimated",
+"why": "Hollow plastic can safe with lid; listings are different items"
+},
+"sticker storage binder album": {
+"usd": 2.1,
+"verdict": "fixed",
+"why": "Sticker album with pocket pages matches listing 2.1"
+},
+"corrugated shipping boxes": {
+"usd": 3.0,
+"verdict": "fixed",
+"why": "Pack of 20 small boxes at 0.15 each"
+},
+"collapsible magnetic parts tray": {
+"usd": 5.2,
+"verdict": "fixed",
+"why": "Set of 4 magnetic trays at 1.3 each"
+},
+"sand kettlebell soft": {
+"usd": 3.5,
+"verdict": "ok",
+"why": "Empty PVC sand kettlebell shell, listing 3.0 is close"
+},
+"mountain bike tire 26x2.1": {
+"usd": 5.0,
+"verdict": "ok",
+"why": "Chinese MTB tire at 5 is plausible"
+},
+"decorative faux books stack": {
+"usd": 4.0,
+"verdict": "estimated",
+"why": "Stack of 3 faux books, listings vary widely"
+},
+"new driver car sign sticker": {
+"usd": 0.49,
+"verdict": "ok",
+"why": "Magnetic sign at listing price is genuinely cheap"
+},
+"tri-fold display boards": {
+"usd": 2.29,
+"verdict": "ok",
+"why": "Large tri-fold board costs about this at factory"
+},
+"fabric triangle bunting banner": {
+"usd": 1.4,
+"verdict": "estimated",
+"why": "About 10m of polyester bunting with 30 flags"
+},
+"terracotta vase with handles": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "Ceramic vase listings 3.2-5.5; heavy, lean higher with packaging"
+},
+"hose water broom surface cleaner wand": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "No listings; typical wide hose water broom wand with fittings"
+},
+"math roller stamp": {
+"usd": 3.8,
+"verdict": "fixed",
+"why": "Set of 4 rollers at 0.9 each plus packing"
+},
+"sports team scrimmage pinnies vests": {
+"usd": 7.2,
+"verdict": "fixed",
+"why": "Pack of 6 vests at 1.2 each"
+},
+"ravioli stamp cutter set": {
+"usd": 1.5,
+"verdict": "estimated",
+"why": "Listing 0.3 is one cutter; set with roller and handle"
+},
+"magnetic card holder uv protection": {
+"usd": 4.8,
+"verdict": "fixed",
+"why": "Pack of 10 holders at 0.45 plus packing"
+},
+"islamic wall decal calligraphy": {
+"usd": 2.0,
+"verdict": "estimated",
+"why": "Listings unrelated; vinyl wall decal set typical price"
+},
+"running hydration vest soft flask": {
+"usd": 6.0,
+"verdict": "estimated",
+"why": "Listing is flask only; vest plus two flasks"
+},
+"flat mending plate bracket": {
+"usd": 2.6,
+"verdict": "estimated",
+"why": "Pack of about 30 plates at 0.08 each"
+},
+"dinosaur finger puppets set": {
+"usd": 2.2,
+"verdict": "fixed",
+"why": "Set of 10 puppets at 0.2 plus packing"
+},
+"car front seat & steering wheel sun cover set": {
+"usd": 4.5,
+"verdict": "estimated",
+"why": "No listings; foil seat covers plus steering wheel cover"
+},
+"disposable cardboard cat litter box": {
+"usd": 2.5,
+"verdict": "fixed",
+"why": "Pack of 3 boxes at 0.82 each"
+},
+"fabric pennant bunting banner": {
+"usd": 1.1,
+"verdict": "ok",
+"why": "Fabric bunting really costs about this"
+},
+"agility training hurdles set": {
+"usd": 9.0,
+"verdict": "fixed",
+"why": "Hurdle set listing 8.73-9.48 for six hurdles"
+},
+"VR lens protector cover": {
+"usd": 1.5,
+"verdict": "estimated",
+"why": "Listings unrelated; silicone lens cover typical price"
+},
+"diamond painting pen": {
+"usd": 0.88,
+"verdict": "ok",
+"why": "Resin pen with tips genuinely cheap"
+},
+"disc tree swing seat with rope": {
+"usd": 3.0,
+"verdict": "ok",
+"why": "Listing matches disc swing with rope"
+},
+"reflective driveway marker stakes": {
+"usd": 6.5,
+"verdict": "fixed",
+"why": "Pack of 10 fiberglass stakes at 0.6 each"
+},
+"reusable plasticine modeling clay bars": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Listing prices one small set; pack of about 24 bars"
+},
+"wedding card box with lock": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "Acrylic/PVC lock card box listings 4-7.5, bulky"
+},
+"PVC furniture grade tee fittings": {
+"usd": 5.0,
+"verdict": "fixed",
+"why": "Pack of 20 fittings at 0.24 each"
+},
+"artificial boxwood hedge wall panels": {
+"usd": 12.0,
+"verdict": "fixed",
+"why": "Four 50cm panels at about 3.0 each"
+},
+"sack race bags outdoor party games set": {
+"usd": 4.0,
+"verdict": "estimated",
+"why": "Two sacks at 1.29 plus spoons and extras"
+},
+"tissue paper pom poms decoration": {
+"usd": 1.15,
+"verdict": "ok",
+"why": "Tissue pom pack really costs about this"
+},
+"small galvanized metal buckets with handle": {
+"usd": 3.6,
+"verdict": "fixed",
+"why": "Set of 3 buckets at 1.15 each"
+},
+"led foam light sticks": {
+"usd": 8.0,
+"verdict": "fixed",
+"why": "Pack of 30 sticks at 0.25 plus packing"
+},
+"blank aluminum business cards": {
+"usd": 5.0,
+"verdict": "estimated",
+"why": "Pack of 50 blank cards at about 0.1 each"
+},
+"mini finger bike metal": {
+"usd": 1.2,
+"verdict": "ok",
+"why": "Metal finger bike listing matches at this price"
+},
+"double blade herb rocker mezzaluna with board": {
+"usd": 4.6,
+"verdict": "ok",
+"why": "Knife plus wooden board, cost plausible"
+},
+"game disc storage case": {
+"usd": 1.6,
+"verdict": "estimated",
+"why": "Listing is bare case; 24-disc hard storage case"
+},
+"padel ball pressurizer tube with pump": {
+"usd": 6.5,
+"verdict": "estimated",
+"why": "Listings are balls, not pressurizer; tube with pump"
+},
+"pirate treasure coins plastic": {
+"usd": 1.0,
+"verdict": "estimated",
+"why": "Bag of about 100 plastic coins"
+},
+"galvanized metal drink tub bucket": {
+"usd": 5.5,
+"verdict": "estimated",
+"why": "Listing is tiny tin; full size galvanized tub"
+},
+"small pet bonding pouch": {
+"usd": 1.8,
+"verdict": "estimated",
+"why": "Listings are treat pouches; fabric bonding pouch"
+},
+"nano tape bubble kit": {
+"usd": 1.5,
+"verdict": "estimated",
+"why": "Kit with several tape rolls and straws, lean higher"
+},
+"silicone pot lid ladle holder": {
+"usd": 0.41,
+"verdict": "ok",
+"why": "Silicone holder per unit genuinely cheap"
+},
+"floor squeegee set 55cm + 35cm silicone rotating": {
+"usd": 3.0,
+"verdict": "estimated",
+"why": "Two squeegee heads with handle, lean higher"
+},
+"socket outlet tester UK plug": {
+"usd": 2.2,
+"verdict": "estimated",
+"why": "No listings; LCD-less socket tester typical price"
+}
+}

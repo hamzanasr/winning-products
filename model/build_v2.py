@@ -11,11 +11,13 @@ from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from fees import commission_rate, fbn_fee
 from build_1500 import CATS, AMZ, BANNED, toks, jacc, pack_count, listing_is_pack
+from build_v3 import V3_BANNED, MAX_MULT, REVIEW_MULT
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 work = os.path.dirname(root)
 FX = 3.75
 N = 3000
+TARGET = 711          # published size of this list; gaps after review are refilled from the 100-200 SAR spares
 TYPES = ("weak_comp", "us_gap", "improve")
 
 
@@ -45,11 +47,19 @@ def load_candidates():
                           asin=None, us_price=None, us_ratings=int(x.get("us_monthly_units") or 0) and 0, us_rank=None, us_stars=None, us_path="", us_title="", us_img="",
                           agent_usd=float(x["buy_usd"]) if x.get("buy_usd") else None, agent_sell=x.get("sell_sar"),
                           improve=x.get("improvement", ""), review_url=x.get("review_url", "")))
+    tfp = os.path.join(root, "data", "text_fix_v2.json")
+    if os.path.exists(tfp):           # rewritten Arabic name / problem for entries whose text was too thin
+        tf = json.load(open(tfp, encoding="utf-8"))
+        for c in C:
+            c.update({k: v for k, v in (tf.get(c["en"]) or {}).items() if k in ("ar", "problem") and v})
     existing = [toks(l) for l in open(os.path.join(work, "existing", "ALL.txt"), encoding="utf-8").read().splitlines() if l.strip()]
+    v3p = os.path.join(root, "data", "products_v3.json")
+    if os.path.exists(v3p):           # never repeat the 100-200 SAR list
+        existing += [toks(p["en"]) for p in json.load(open(v3p, encoding="utf-8"))["products"]]
     C.sort(key=lambda c: -(c["us_ratings"] or 0))            # keep the best-documented version of duplicates
     keep, seen = [], []
     for c in C:
-        if c["kg"] > 3 or BANNED.search(c["en"]):
+        if c["kg"] > 3 or BANNED.search(c["en"]) or V3_BANNED.search(c["en"]):
             continue
         t = toks(c["en"])
         if not t or any(jacc(t, e) >= 0.75 for e in existing) or any(jacc(t, s) >= 0.75 for s in seen):
@@ -80,6 +90,8 @@ def main():
         print("written", len(out)); return
     mic = json.load(open(os.path.join(root, "data", "mic_1500.json"), encoding="utf-8"))
     amz = json.load(open(os.path.join(root, "data", "amz_comp.json"), encoding="utf-8"))
+    cfp = os.path.join(root, "data", "cost_fix_v2.json")   # same review format as cost_fix_v3.json
+    cost_fix = json.load(open(cfp, encoding="utf-8")) if os.path.exists(cfp) else {}
     why, P = Counter(), []
     for c in cands:
         ev, az = mic.get(c["en"]), amz.get(c["en"])
@@ -105,6 +117,14 @@ def main():
         has_mic = ev.get("mic_usd") and ev.get("n_priced", 0) >= 3
         mic_usd = ev["mic_usd"] * (n if has_mic and n > 1 and not any(listing_is_pack(t.get("title") or "", n) for t in ev.get("top", [])) else 1) if has_mic else None
         usd = max(x for x in (mic_usd, c["agent_usd"]) if x) if (mic_usd or c["agent_usd"]) else None
+        fx = cost_fix.get(c["en"])
+        if fx:
+            if fx.get("verdict") == "reject" or not fx.get("usd"):
+                why["supplier match rejected on review"] += 1; continue
+            if fx["verdict"] != "ok":
+                usd, mic_usd = max(fx["usd"], usd or 0), (None if fx["verdict"] == "estimated" else fx["usd"])
+        elif usd and sell / (usd * (bundle if bundle > 1 else 1) * FX) > REVIEW_MULT and "--dump" not in sys.argv:
+            why["implausible cost, not reviewed"] += 1; continue
         if usd and bundle > 1:
             usd *= bundle
         if not usd:
@@ -112,6 +132,8 @@ def main():
         mult = sell / (usd * FX)
         if mult < 4:
             why["under 4x"] += 1; continue
+        if mult > MAX_MULT and "--dump" not in sys.argv:   # too good to be true: mismatched listing or overpriced imported stock
+            why["multiple above %dx (unreliable)" % MAX_MULT] += 1; continue
         comp = az["comp"]
         weak_inc = az.get("weak_incumbent")
         if comp <= 4:
@@ -153,6 +175,28 @@ def main():
         dem = min(1, math.log10(max(1, (p["us_ratings"] or 0))) / 4.5) if p["us_ratings"] else 0.3
         p["score"] = round(100 * (0.30 * cs + 0.25 * m + 0.20 * d + 0.15 * dem + 0.10 * min(1, (p["mult"] - 4) / 4)), 1)
     P.sort(key=lambda p: -p["score"])
+    if "--dump" in sys.argv:          # whole qualified pool before the review rules, for the cost / text review
+        json.dump(P, open(os.path.join(work, "v2_qualified.json"), "w", encoding="utf-8"), ensure_ascii=False); print("dumped", len(P)); return
+    sp = os.path.join(work, "v3_spares.json")
+    if len(P) < TARGET and os.path.exists(sp):
+        # refill to the published size from the 100-200 SAR spares (already measured and reviewed, within 50-200 SAR)
+        have = [toks(p["en"]) for p in P]
+        tfp2 = os.path.join(root, "data", "text_fix_v2.json")
+        tf_all = json.load(open(tfp2, encoding="utf-8")) if os.path.exists(tfp2) else {}
+        for s in json.load(open(sp, encoding="utf-8")):
+            if len(P) >= TARGET:
+                break
+            t = toks(s["en"])
+            if any(jacc(t, h) >= 0.75 for h in have):
+                continue
+            have.append(t)
+            fix = (tf_all.get(s["en"]) or {})
+            if fix.get("ar"):
+                s["ar"] = fix["ar"] + (f" (طقم {s['bundle']} قطع)" if s.get("bundle") else "")
+            if fix.get("problem"):
+                s["problem"] = fix["problem"]
+            P.append(s)
+        print("refilled from 100-200 spares to", len(P))
     top = P[:N]
     for i, p in enumerate(top):
         p["id"], p["rank"] = 3001 + i, i + 1

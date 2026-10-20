@@ -197,6 +197,8 @@ def main():
     if "--dump" in sys.argv:          # whole qualified pool, for the cost / text review
         json.dump(P, open(os.path.join(work, "v3_qualified.json"), "w", encoding="utf-8"), ensure_ascii=False); print("dumped", len(P)); return
     top = P[:N]
+    # qualified but not selected: build_v2 fills its gaps from these (they also meet its 50-200 SAR rules)
+    json.dump([dict(p, _margin=None) for p in P[N:]], open(os.path.join(work, "v3_spares.json"), "w", encoding="utf-8"), ensure_ascii=False)
     for i, p in enumerate(top):
         p["id"], p["rank"] = 5001 + i, i + 1
         del p["_margin"]
