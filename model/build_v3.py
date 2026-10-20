@@ -13,13 +13,15 @@ from fees import commission_rate, fbn_fee
 from build_1500 import CATS, AMZ, BANNED, toks, jacc, pack_count, listing_is_pack
 
 # medical / personal care / weapons / veterinary injection gear that slipped past BANNED
-V3_BANNED = re.compile(r"\b(syringe|drench|respirator|n95|cpr|choking|speargun|rifle|hair|oximeter|pulse|stethoscope|first aid|bandage|tourniquet|headgear|snow chains)\b", re.I)
+V3_BANNED = re.compile(r"\b(syringe|drench|respirator|n95|cpr|choking|speargun|rifle|hair|oximeter|pulse|stethoscope|first aid|bandage|tourniquet|headgear|snow chains|aerosol|fixative|seeds?|gas regulator|thermostat|sword|wine|roulette|matches|spray paint|lube spray|head guard|desert gauge|desert kit)\b", re.I)
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 work = os.path.dirname(root)
 FX = 3.75
 N = 2000
 MIN_SELL = 100
+MAX_MULT = 20
+REVIEW_MULT = 10          # above this, a supplier match must be reviewed (data/cost_fix_v3.json) or the product is dropped
 TYPES = ("weak_comp", "us_gap", "improve")
 
 
@@ -95,6 +97,12 @@ def main():
         json.dump(out, open(os.path.join(work, "v3_candidates.json"), "w", encoding="utf-8"), ensure_ascii=False)
         print("written", len(out)); return
     mic = json.load(open(os.path.join(root, "data", "mic_1500.json"), encoding="utf-8"))
+    # manual review of implausible supplier matches: {en: {"usd": cost of one sold unit or null, "verdict": ok|fixed|estimated|reject, "why": ...}}
+    cfp = os.path.join(root, "data", "cost_fix_v3.json")
+    cost_fix = json.load(open(cfp, encoding="utf-8")) if os.path.exists(cfp) else {}
+    # rewritten Arabic name / problem for entries whose text was too thin: {en: {"ar": ..., "problem": ...}}
+    tfp = os.path.join(root, "data", "text_fix_v3.json")
+    text_fix = json.load(open(tfp, encoding="utf-8")) if os.path.exists(tfp) else {}
     amz = json.load(open(os.path.join(root, "data", "amz_comp.json"), encoding="utf-8"))
     why, P = Counter(), []
     for c in cands:
@@ -123,6 +131,14 @@ def main():
         has_mic = ev.get("mic_usd") and ev.get("n_priced", 0) >= 3
         mic_usd = ev["mic_usd"] * (n if has_mic and n > 1 and not any(listing_is_pack(t.get("title") or "", n) for t in ev.get("top", [])) else 1) if has_mic else None
         usd = max(x for x in (mic_usd, c["agent_usd"]) if x) if (mic_usd or c["agent_usd"]) else None
+        fx = cost_fix.get(c["en"])
+        if fx:
+            if fx.get("verdict") == "reject" or not fx.get("usd"):
+                why["supplier match rejected on review"] += 1; continue
+            if fx["verdict"] != "ok":
+                usd, mic_usd = max(fx["usd"], usd or 0), (None if fx["verdict"] == "estimated" else fx["usd"])
+        elif usd and sell / (usd * (bundle if bundle > 1 else 1) * FX) > REVIEW_MULT:
+            why["implausible cost, not reviewed"] += 1; continue
         if usd and bundle > 1:
             usd *= bundle
         if not usd:
@@ -130,6 +146,8 @@ def main():
         mult = sell / (usd * FX)
         if mult < 4:
             why["under 4x"] += 1; continue
+        if mult > MAX_MULT:                # too good to be true: mismatched listing or overpriced imported stock
+            why["multiple above %dx (unreliable)" % MAX_MULT] += 1; continue
         comp = az["comp"]
         weak_inc = az.get("weak_incumbent")
         if comp <= 4:
@@ -148,6 +166,11 @@ def main():
         pn = net - landed - max(1, pct * sell) - fbn - sell * 0.11
         daily, dsrc = daily_estimate(c, az)
         top = az.get("top") or {}
+        tf = text_fix.get(c["en"]) or {}
+        if tf.get("ar"):
+            c = dict(c, ar=tf["ar"])
+        if tf.get("problem"):
+            c = dict(c, problem=tf["problem"])
         img = c["us_img"] or (ev.get("img") if ev.get("img_score", 0) >= 0.5 else "")
         P.append(dict(
             ar=c["ar"] + (f" (طقم {bundle} قطع)" if bundle > 1 else ""), en=c["en"], bundle=bundle if bundle > 1 else None, cat=c["cat"], type=typ, problem=c["problem"], price=sell, usd=round(usd, 2), cost_src="mic" if mic_usd else "est",
@@ -171,6 +194,8 @@ def main():
         dem = min(1, math.log10(max(1, (p["us_ratings"] or 0))) / 4.5) if p["us_ratings"] else 0.3
         p["score"] = round(100 * (0.30 * cs + 0.25 * m + 0.20 * d + 0.15 * dem + 0.10 * min(1, (p["mult"] - 4) / 4)), 1)
     P.sort(key=lambda p: -p["score"])
+    if "--dump" in sys.argv:          # whole qualified pool, for the cost / text review
+        json.dump(P, open(os.path.join(work, "v3_qualified.json"), "w", encoding="utf-8"), ensure_ascii=False); print("dumped", len(P)); return
     top = P[:N]
     for i, p in enumerate(top):
         p["id"], p["rank"] = 5001 + i, i + 1
